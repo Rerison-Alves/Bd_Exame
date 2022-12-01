@@ -5,10 +5,9 @@ import model.*;
 import java.lang.reflect.Field;
 
 public class Teste {
-    private static Object classe;
-
+    
     public static void main(String[] args) {
-        Material_exame classe = new Material_exame();
+        Valor_referencia_composicao_exame classe = new Valor_referencia_composicao_exame();
         String tabela = classe.getClass().getSimpleName();
         String atributos = getAtributos(classe);
         String atributosrecebe = getAtributosRecebe(classe);
