@@ -1,6 +1,12 @@
 package model;
 
 public class Medico_has_especialidade extends GenericModel{
+    public Medico_has_especialidade(Integer id, Integer medico_id, Integer especialidade_id) {
+        super(id);
+        this.medico_id = medico_id;
+        this.especialidade_id = especialidade_id;
+    }
+
     private Integer medico_id;
     private Integer especialidade_id;
 

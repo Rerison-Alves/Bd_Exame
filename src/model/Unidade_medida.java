@@ -1,6 +1,11 @@
 package model;
 
 public class Unidade_medida extends GenericModel{
+    public Unidade_medida(Integer id, String descricao) {
+        super(id);
+        this.descricao = descricao;
+    }
+
     private String descricao;
 
     public String getDescricao() {

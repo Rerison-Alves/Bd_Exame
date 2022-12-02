@@ -3,6 +3,14 @@ package model;
 import java.util.Date;
 
 public class Laudo extends GenericModel{
+    public Laudo(Integer id, String assinatura_digital, Date dt_resultado, String codigo, Integer solicitacao_exame_id) {
+        super(id);
+        this.assinatura_digital = assinatura_digital;
+        this.dt_resultado = dt_resultado;
+        this.codigo = codigo;
+        this.solicitacao_exame_id = solicitacao_exame_id;
+    }
+
     private String assinatura_digital;
     private Date dt_resultado;
     private String codigo;

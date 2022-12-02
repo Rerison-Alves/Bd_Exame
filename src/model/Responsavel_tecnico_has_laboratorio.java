@@ -1,6 +1,12 @@
 package model;
 
 public class Responsavel_tecnico_has_laboratorio extends GenericModel{
+    public Responsavel_tecnico_has_laboratorio(Integer id, Integer responsavel_tecnico_id, Integer laboratorio_id) {
+        super(id);
+        this.responsavel_tecnico_id = responsavel_tecnico_id;
+        this.laboratorio_id = laboratorio_id;
+    }
+
     private Integer responsavel_tecnico_id;
     private Integer laboratorio_id;
 

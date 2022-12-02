@@ -1,6 +1,15 @@
 package model;
 
 public class Laboratorio extends GenericModel {
+    public Laboratorio(Integer id, String descricao, String CNES, String CNPJ, String CRBM, String nome_fantasia) {
+        super(id);
+        this.descricao = descricao;
+        this.CNES = CNES;
+        this.CNPJ = CNPJ;
+        this.CRBM = CRBM;
+        this.nome_fantasia = nome_fantasia;
+    }
+
     private String descricao;
     private String CNES;
     private String CNPJ;

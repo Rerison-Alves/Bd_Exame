@@ -1,6 +1,12 @@
 package model;
 
 public class Medico extends GenericModel{
+    public Medico(Integer id, String crm, String nome) {
+        super(id);
+        this.crm = crm;
+        this.nome = nome;
+    }
+
     private String crm;
     private String nome;
 

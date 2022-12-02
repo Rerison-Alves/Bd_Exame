@@ -1,6 +1,17 @@
 package model;
 
 public class Endereco extends GenericModel{
+    public Endereco(Integer id, String rua, String numero, String complemento, String bairro, String CEP, String cidade, Integer laboratorio_id) {
+        super(id);
+        this.rua = rua;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.bairro = bairro;
+        this.CEP = CEP;
+        this.cidade = cidade;
+        this.laboratorio_id = laboratorio_id;
+    }
+
     private String rua;
     private String numero;
     private String complemento;

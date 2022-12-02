@@ -1,6 +1,12 @@
 package model;
 
 public class Composicao_exame extends GenericModel{
+    public Composicao_exame(Integer id, String descricao, Integer unidade_medida_id) {
+        super(id);
+        this.descricao = descricao;
+        this.unidade_medida_id = unidade_medida_id;
+    }
+
     private String descricao;
     private Integer unidade_medida_id;
 

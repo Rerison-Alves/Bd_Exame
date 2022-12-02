@@ -1,6 +1,14 @@
 package model;
 
 public class Habilitacao_exame extends GenericModel{
+    public Habilitacao_exame(Integer id, String observacao, Double custo, Integer laboratorio_id, Integer tipo_exame_id) {
+        super(id);
+        this.observacao = observacao;
+        this.custo = custo;
+        this.laboratorio_id = laboratorio_id;
+        this.tipo_exame_id = tipo_exame_id;
+    }
+
     private String observacao;
     private Double custo;
     private Integer laboratorio_id;

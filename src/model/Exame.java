@@ -1,6 +1,14 @@
 package model;
 
 public class Exame extends GenericModel{
+    public Exame(Integer id, Integer tipo_exame_id, Integer material_exame_id, String descricao, String metodo) {
+        super(id);
+        this.tipo_exame_id = tipo_exame_id;
+        this.material_exame_id = material_exame_id;
+        this.descricao = descricao;
+        this.metodo = metodo;
+    }
+
     private Integer tipo_exame_id;
     private Integer material_exame_id;
     private String descricao;

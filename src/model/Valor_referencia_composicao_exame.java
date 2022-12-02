@@ -1,6 +1,15 @@
 package model;
 
 public class Valor_referencia_composicao_exame extends GenericModel{
+    public Valor_referencia_composicao_exame(Integer id, String valor_minimo, String valor_maximo, String limitador_minimo, String limitador_maximo, Integer unidade_medida_id) {
+        super(id);
+        this.valor_minimo = valor_minimo;
+        this.valor_maximo = valor_maximo;
+        this.limitador_minimo = limitador_minimo;
+        this.limitador_maximo = limitador_maximo;
+        this.unidade_medida_id = unidade_medida_id;
+    }
+
     private String valor_minimo;
     private String valor_maximo;
     private String limitador_minimo;

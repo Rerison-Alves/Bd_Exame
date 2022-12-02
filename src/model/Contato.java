@@ -1,6 +1,12 @@
 package model;
 
 public class Contato extends GenericModel {
+    public Contato(Integer id, String telefone, Integer laboratorio_id) {
+        super(id);
+        this.telefone = telefone;
+        this.laboratorio_id = laboratorio_id;
+    }
+
     private String telefone;
     private Integer laboratorio_id;
 

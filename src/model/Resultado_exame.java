@@ -3,6 +3,14 @@ package model;
 import java.util.Date;
 
 public class Resultado_exame extends GenericModel{
+    public Resultado_exame(Integer id, Date dt_exame, String valor, Integer composicao_id, Integer laudo_id) {
+        super(id);
+        this.dt_exame = dt_exame;
+        this.valor = valor;
+        this.composicao_id = composicao_id;
+        this.laudo_id = laudo_id;
+    }
+
     private Date dt_exame;
     private String valor;
     private Integer composicao_id;

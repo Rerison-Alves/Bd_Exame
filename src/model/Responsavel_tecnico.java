@@ -1,6 +1,14 @@
 package model;
 
 public class Responsavel_tecnico extends GenericModel{
+    public Responsavel_tecnico(Integer id, String nome, String conselho, String formacao, Integer sigla_formacao_id) {
+        super(id);
+        this.nome = nome;
+        this.conselho = conselho;
+        this.formacao = formacao;
+        this.sigla_formacao_id = sigla_formacao_id;
+    }
+
     private String nome;
     private String conselho;
     private String formacao;
