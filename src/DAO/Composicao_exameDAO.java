@@ -33,9 +33,10 @@ public class Composicao_exameDAO extends ConexaoDB{
         return count;
     }
 
-    public void insertMarca(Composicao_exame entidade) {
+    public void insertComposicao_exame(Composicao_exame entidade) {
         try (PreparedStatement preparedStatement = prapararSQL(INSERT_COMPOSICAO_EXAME_SQL)) {
             preparedStatement.setString(1, entidade.getDescricao());
+            preparedStatement.setInt(2, entidade.getUnidade_medida_id());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
@@ -44,7 +45,7 @@ public class Composicao_exameDAO extends ConexaoDB{
         }
     }
 
-    public Composicao_exame selectMarca(int id) {
+    public Composicao_exame selectComposicao_exame(int id) {
         Composicao_exame entidade = null;
         try (PreparedStatement preparedStatement = prapararSQL(SELECT_COMPOSICAO_EXAME_BY_ID)) {
             preparedStatement.setInt(1, id);
@@ -63,7 +64,7 @@ public class Composicao_exameDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<Composicao_exame> selectAllMarcas() {
+    public List<Composicao_exame> selectAllComposicao_exame() {
         List<Composicao_exame> entidades = new ArrayList<>();
         try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_COMPOSICAO_EXAME)) {
             ResultSet rs = preparedStatement.executeQuery();
@@ -82,7 +83,7 @@ public class Composicao_exameDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean deleteMarca(int id) throws SQLException {
+    public boolean deleteComposicao_exame(int id) throws SQLException {
         try (PreparedStatement statement = prapararSQL(DELETE_COMPOSICAO_EXAME_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
@@ -91,10 +92,11 @@ public class Composicao_exameDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateMarca(Composicao_exame entidade) throws SQLException {
+    public boolean updateComposicao_exame(Composicao_exame entidade) throws SQLException {
         try (PreparedStatement statement = prapararSQL(UPDATE_COMPOSICAO_EXAME_SQL)) {
             statement.setString(1, entidade.getDescricao());
-            statement.setInt(2, entidade.getId());
+            statement.setInt(2, entidade.getUnidade_medida_id());
+            statement.setInt(3, entidade.getId());
 
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {

@@ -1,6 +1,6 @@
 package DAO;
 
-import model.Composicao_exame;
+import model.Contato;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,9 +32,10 @@ public class ContatoDAO extends ConexaoDB{
         return count;
     }
 
-    public void insertMarca(Composicao_exame entidade) {
-        try (PreparedStatement preparedStatement = prapararSQL(INSERT_COMPOSICAO_EXAME_SQL)) {
-            preparedStatement.setString(1, entidade.getDescricao());
+    public void insertContato(Contato entidade) {
+        try (PreparedStatement preparedStatement = prapararSQL(INSERT_CONTATO_SQL)) {
+            preparedStatement.setString(1, entidade.getTelefone());
+            preparedStatement.setInt(2, entidade.getLaboratorio_id());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
@@ -43,16 +44,16 @@ public class ContatoDAO extends ConexaoDB{
         }
     }
 
-    public Composicao_exame selectMarca(int id) {
-        Composicao_exame entidade = null;
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_COMPOSICAO_EXAME_BY_ID)) {
+    public Contato selectContato(int id) {
+        Contato entidade = null;
+        try (PreparedStatement preparedStatement = prapararSQL(SELECT_CONTATO_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                String descricao = rs.getString("descricao");
-                Integer unidade_medida_id = rs.getInt("unidade_medida_id");
-                entidade = new Composicao_exame(id, descricao,unidade_medida_id);
+                String telefone = rs.getString("telefone");
+                Integer laboratorio_id = rs.getInt("laboratorio_id");
+                entidade = new Contato(id, telefone,laboratorio_id);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -62,16 +63,16 @@ public class ContatoDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<Composicao_exame> selectAllMarcas() {
-        List<Composicao_exame> entidades = new ArrayList<>();
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_COMPOSICAO_EXAME)) {
+    public List<Contato> selectAllContato() {
+        List<Contato> entidades = new ArrayList<>();
+        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_CONTATO)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String descricao = rs.getString("descricao");
-                Integer unidade_medida_id = rs.getInt("unidade_medida_id");
-                entidades.add(new Composicao_exame(id, descricao, unidade_medida_id));
+                String telefone = rs.getString("telefone");
+                Integer laboratorio_id = rs.getInt("laboratorio_id");
+                entidades.add(new Contato(id, telefone,laboratorio_id));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -81,8 +82,8 @@ public class ContatoDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean deleteMarca(int id) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(DELETE_COMPOSICAO_EXAME_SQL)) {
+    public boolean deleteContato(int id) throws SQLException {
+        try (PreparedStatement statement = prapararSQL(DELETE_CONTATO_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
@@ -90,10 +91,11 @@ public class ContatoDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateMarca(Composicao_exame entidade) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(UPDATE_COMPOSICAO_EXAME_SQL)) {
-            statement.setString(1, entidade.getDescricao());
-            statement.setInt(2, entidade.getId());
+    public boolean updateContato(Contato entidade) throws SQLException {
+        try (PreparedStatement statement = prapararSQL(UPDATE_CONTATO_SQL)) {
+            statement.setString(1, entidade.getTelefone());
+            statement.setInt(2, entidade.getLaboratorio_id());
+            statement.setInt(3, entidade.getId());
 
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {

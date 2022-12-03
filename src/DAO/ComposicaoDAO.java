@@ -33,7 +33,7 @@ public class ComposicaoDAO extends ConexaoDB{
         return count;
     }
 
-    public void insertMarca(Composicao entidade) {
+    public void insertComposicao(Composicao entidade) {
         try (PreparedStatement preparedStatement = prapararSQL(INSERT_COMPOSICAO_SQL)) {
             preparedStatement.setInt(1, entidade.getExame_id());
             preparedStatement.setInt(2, entidade.getComposicao_exame_id());
@@ -46,7 +46,7 @@ public class ComposicaoDAO extends ConexaoDB{
         }
     }
 
-    public Composicao selectMarca(int id) {
+    public Composicao selectComposicao(int id) {
         Composicao entidade = null;
         try (PreparedStatement preparedStatement = prapararSQL(SELECT_COMPOSICAO_BY_ID)) {
             preparedStatement.setInt(1, id);
@@ -66,7 +66,7 @@ public class ComposicaoDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<Composicao> selectAllMarcas() {
+    public List<Composicao> selectAllComposicao() {
         List<Composicao> entidades = new ArrayList<>();
         try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_COMPOSICAO)) {
             ResultSet rs = preparedStatement.executeQuery();
@@ -86,7 +86,7 @@ public class ComposicaoDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean deleteMarca(int id) throws SQLException {
+    public boolean deleteComposicao(int id) throws SQLException {
         try (PreparedStatement statement = prapararSQL(DELETE_COMPOSICAO_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
@@ -95,7 +95,7 @@ public class ComposicaoDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateMarca(Composicao entidade) throws SQLException {
+    public boolean updateComposicao(Composicao entidade) throws SQLException {
         try (PreparedStatement statement = prapararSQL(UPDATE_COMPOSICAO_SQL)) {
             statement.setInt(1, entidade.getExame_id());
             statement.setInt(2, entidade.getComposicao_exame_id());

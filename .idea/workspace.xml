@@ -11,45 +11,7 @@
       <change beforePath="$PROJECT_DIR$/src/DAO/EnderecoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/EnderecoDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DAO/EspecialidadeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/EspecialidadeDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DAO/ExameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/ExameDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Habilitacao_exameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Habilitacao_exameDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/LaboratorioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/LaboratorioDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/LaudoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/LaudoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Material_exameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Material_exameDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/MedicoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/MedicoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Medico_has_especialidadeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Medico_has_especialidadeDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/PacienteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/PacienteDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Responsavel_tecnicoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Responsavel_tecnicoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Responsavel_tecnico_has_laboratorioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Responsavel_tecnico_has_laboratorioDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Resultado_ExameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Resultado_ExameDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Sigla_formacaoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Sigla_formacaoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Solicitacao_exameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Solicitacao_exameDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Tipo_exameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Tipo_exameDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Unidade_medidaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Unidade_medidaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Valor_referencia_composicao_exameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Valor_referencia_composicao_exameDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Teste/Teste.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Teste/Teste.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Composicao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Composicao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Composicao_exame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Composicao_exame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Consulta_medica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Consulta_medica.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Contato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Contato.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Endereco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Endereco.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Especialidade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Especialidade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Exame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Exame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/GenericModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/GenericModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Habilitacao_exame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Habilitacao_exame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Laboratorio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Laboratorio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Laudo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Laudo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Material_exame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Material_exame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Medico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Medico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Medico_has_especialidade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Medico_has_especialidade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Paciente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Paciente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Responsavel_tecnico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Responsavel_tecnico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Responsavel_tecnico_has_laboratorio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Responsavel_tecnico_has_laboratorio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Resultado_exame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Resultado_exame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Sigla_formacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Sigla_formacao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Solicitacao_exame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Solicitacao_exame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Tipo_exame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Tipo_exame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Unidade_medida.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Unidade_medida.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Valor_referencia_composicao_exame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Valor_referencia_composicao_exame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

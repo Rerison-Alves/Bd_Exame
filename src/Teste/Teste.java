@@ -7,7 +7,7 @@ import java.lang.reflect.Field;
 public class Teste {
     
     public static void main(String[] args) {
-        Composicao classe = new Composicao(1,1,1,1);
+        Endereco classe = new Endereco(1,"","","", "", "", "", 1);
         String tabela = classe.getClass().getSimpleName();
         String atributos = getAtributos(classe);
         String atributosrecebe = getAtributosRecebe(classe);

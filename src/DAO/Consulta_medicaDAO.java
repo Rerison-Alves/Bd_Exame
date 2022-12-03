@@ -1,11 +1,12 @@
 package DAO;
 
-import model.Composicao_exame;
+import model.Consulta_medica;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Consulta_medicaDAO extends ConexaoDB{
@@ -32,9 +33,12 @@ public class Consulta_medicaDAO extends ConexaoDB{
         return count;
     }
 
-    public void insertMarca(Composicao_exame entidade) {
-        try (PreparedStatement preparedStatement = prapararSQL(INSERT_COMPOSICAO_EXAME_SQL)) {
-            preparedStatement.setString(1, entidade.getDescricao());
+    public void insertConsulta_medica(Consulta_medica entidade) {
+        try (PreparedStatement preparedStatement = prapararSQL(INSERT_CONSULTA_MEDICA_SQL)) {
+            preparedStatement.setDate(1, new java.sql.Date(entidade.getDt_consulta().getTime()));
+            preparedStatement.setInt(2, entidade.getMedico_id());
+            preparedStatement.setInt(3, entidade.getPaciente_id());
+            preparedStatement.setString(4, entidade.getNm_atendimento());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
@@ -43,16 +47,18 @@ public class Consulta_medicaDAO extends ConexaoDB{
         }
     }
 
-    public Composicao_exame selectMarca(int id) {
-        Composicao_exame entidade = null;
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_COMPOSICAO_EXAME_BY_ID)) {
+    public Consulta_medica selectConsulta_medica(int id) {
+        Consulta_medica entidade = null;
+        try (PreparedStatement preparedStatement = prapararSQL(SELECT_CONSULTA_MEDICA_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                String descricao = rs.getString("descricao");
-                Integer unidade_medida_id = rs.getInt("unidade_medida_id");
-                entidade = new Composicao_exame(id, descricao,unidade_medida_id);
+                Date dt_consulta = new Date(rs.getDate("dt_consulta").getTime());
+                Integer medico_id = rs.getInt("medico_id");
+                Integer paciente_id = rs.getInt("paciente_id");
+                String nm_atendimento = rs.getString("nm_atendimento");
+                entidade = new Consulta_medica(id,dt_consulta,medico_id,paciente_id,nm_atendimento);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -62,16 +68,18 @@ public class Consulta_medicaDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<Composicao_exame> selectAllMarcas() {
-        List<Composicao_exame> entidades = new ArrayList<>();
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_COMPOSICAO_EXAME)) {
+    public List<Consulta_medica> selectAllConsulta_medica() {
+        List<Consulta_medica> entidades = new ArrayList<>();
+        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_CONSULTA_MEDICA)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String descricao = rs.getString("descricao");
-                Integer unidade_medida_id = rs.getInt("unidade_medida_id");
-                entidades.add(new Composicao_exame(id, descricao, unidade_medida_id));
+                Date dt_consulta = new Date(rs.getDate("dt_consulta").getTime());
+                Integer medico_id = rs.getInt("medico_id");
+                Integer paciente_id = rs.getInt("paciente_id");
+                String nm_atendimento = rs.getString("nm_atendimento");
+                entidades.add(new Consulta_medica(id, dt_consulta,medico_id,paciente_id,nm_atendimento));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -81,8 +89,8 @@ public class Consulta_medicaDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean deleteMarca(int id) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(DELETE_COMPOSICAO_EXAME_SQL)) {
+    public boolean deleteConsulta_medica(int id) throws SQLException {
+        try (PreparedStatement statement = prapararSQL(DELETE_CONSULTA_MEDICA_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
@@ -90,10 +98,13 @@ public class Consulta_medicaDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateMarca(Composicao_exame entidade) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(UPDATE_COMPOSICAO_EXAME_SQL)) {
-            statement.setString(1, entidade.getDescricao());
-            statement.setInt(2, entidade.getId());
+    public boolean updateConsulta_medica(Consulta_medica entidade) throws SQLException {
+        try (PreparedStatement statement = prapararSQL(UPDATE_CONSULTA_MEDICA_SQL)) {
+            statement.setDate(1, new java.sql.Date(entidade.getDt_consulta().getTime()));
+            statement.setInt(2, entidade.getMedico_id());
+            statement.setInt(3, entidade.getPaciente_id());
+            statement.setString(4, entidade.getNm_atendimento());
+            statement.setInt(5, entidade.getId());
 
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {

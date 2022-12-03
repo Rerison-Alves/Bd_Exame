@@ -1,6 +1,6 @@
 package DAO;
 
-import model.Composicao_exame;
+import model.Endereco;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EnderecoDAO extends ConexaoDB{
-    private static final String INSERT_CONTATO_SQL = "INSERT INTO contato (telefone,laboratorio_id) VALUES (?,?);";
-    private static final String SELECT_CONTATO_BY_ID = "SELECT id, * FROM contato WHERE id = ?";
-    private static final String SELECT_ALL_CONTATO = "SELECT * FROM contato;";
-    private static final String DELETE_CONTATO_SQL = "DELETE FROM contato WHERE id = ?;";
-    private static final String UPDATE_CONTATO_SQL = "UPDATE contato SET telefone = ?,laboratorio_id = ? WHERE id = ?;";
-    private static final String TOTAL = "SELECT count(1) FROM contato;";
+    private static final String INSERT_ENDERECO_SQL = "INSERT INTO endereco (rua,numero,complemento,bairro,CEP,cidade,laboratorio_id) VALUES (?,?,?,?,?,?,?);";
+    private static final String SELECT_ENDERECO_BY_ID = "SELECT id, * FROM endereco WHERE id = ?";
+    private static final String SELECT_ALL_ENDERECO = "SELECT * FROM endereco;";
+    private static final String DELETE_ENDERECO_SQL = "DELETE FROM endereco WHERE id = ?;";
+    private static final String UPDATE_ENDERECO_SQL = "UPDATE endereco SET rua = ?,numero = ?,complemento = ?,bairro = ?,CEP = ?,cidade = ?,laboratorio_id = ? WHERE id = ?;";
+    private static final String TOTAL = "SELECT count(1) FROM endereco;";
 
     public Integer count() {
         Integer count = 0;
@@ -32,9 +32,15 @@ public class EnderecoDAO extends ConexaoDB{
         return count;
     }
 
-    public void insertMarca(Composicao_exame entidade) {
-        try (PreparedStatement preparedStatement = prapararSQL(INSERT_COMPOSICAO_EXAME_SQL)) {
-            preparedStatement.setString(1, entidade.getDescricao());
+    public void insertEndereco(Endereco entidade) {
+        try (PreparedStatement preparedStatement = prapararSQL(INSERT_ENDERECO_SQL)) {
+            preparedStatement.setString(1, entidade.getRua());
+            preparedStatement.setString(2, entidade.getNumero());
+            preparedStatement.setString(3, entidade.getComplemento());
+            preparedStatement.setString(4, entidade.getBairro());
+            preparedStatement.setString(5, entidade.getCEP());
+            preparedStatement.setString(6, entidade.getCidade());
+            preparedStatement.setInt(7, entidade.getLaboratorio_id());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
@@ -43,16 +49,21 @@ public class EnderecoDAO extends ConexaoDB{
         }
     }
 
-    public Composicao_exame selectMarca(int id) {
-        Composicao_exame entidade = null;
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_COMPOSICAO_EXAME_BY_ID)) {
+    public Endereco selectEndereco(int id) {
+        Endereco entidade = null;
+        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ENDERECO_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                String descricao = rs.getString("descricao");
-                Integer unidade_medida_id = rs.getInt("unidade_medida_id");
-                entidade = new Composicao_exame(id, descricao,unidade_medida_id);
+                String rua = rs.getString("rua");
+                String numero = rs.getString("numero");
+                String complemento = rs.getString("complemento");
+                String bairro = rs.getString("bairro");
+                String CEP = rs.getString("CEP");
+                String cidade = rs.getString("cidade");
+                Integer laboratorio_id = rs.getInt("laboratorio_id");
+                entidade = new Endereco(id, rua,numero,complemento,bairro,CEP,cidade,laboratorio_id);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -62,16 +73,21 @@ public class EnderecoDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<Composicao_exame> selectAllMarcas() {
-        List<Composicao_exame> entidades = new ArrayList<>();
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_COMPOSICAO_EXAME)) {
+    public List<Endereco> selectAllEndereco() {
+        List<Endereco> entidades = new ArrayList<>();
+        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_ENDERECO)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String descricao = rs.getString("descricao");
-                Integer unidade_medida_id = rs.getInt("unidade_medida_id");
-                entidades.add(new Composicao_exame(id, descricao, unidade_medida_id));
+                String rua = rs.getString("rua");
+                String numero = rs.getString("numero");
+                String complemento = rs.getString("complemento");
+                String bairro = rs.getString("bairro");
+                String CEP = rs.getString("CEP");
+                String cidade = rs.getString("cidade");
+                Integer laboratorio_id = rs.getInt("laboratorio_id");
+                entidades.add(new Endereco(id, rua,numero,complemento,bairro,CEP,cidade,laboratorio_id));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -81,8 +97,8 @@ public class EnderecoDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean deleteMarca(int id) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(DELETE_COMPOSICAO_EXAME_SQL)) {
+    public boolean deleteEndereco(int id) throws SQLException {
+        try (PreparedStatement statement = prapararSQL(DELETE_ENDERECO_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
@@ -90,10 +106,16 @@ public class EnderecoDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateMarca(Composicao_exame entidade) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(UPDATE_COMPOSICAO_EXAME_SQL)) {
-            statement.setString(1, entidade.getDescricao());
-            statement.setInt(2, entidade.getId());
+    public boolean updateEndereco(Endereco entidade) throws SQLException {
+        try (PreparedStatement statement = prapararSQL(UPDATE_ENDERECO_SQL)) {
+            statement.setString(1, entidade.getRua());
+            statement.setString(2, entidade.getNumero());
+            statement.setString(3, entidade.getComplemento());
+            statement.setString(4, entidade.getBairro());
+            statement.setString(5, entidade.getCEP());
+            statement.setString(6, entidade.getCidade());
+            statement.setInt(7, entidade.getLaboratorio_id());
+            statement.setInt(8, entidade.getId());
 
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
