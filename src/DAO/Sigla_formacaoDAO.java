@@ -1,6 +1,6 @@
 package DAO;
 
-import model.Composicao_exame;
+import model.Sigla_formacao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,9 +32,9 @@ public class Sigla_formacaoDAO extends ConexaoDB{
         return count;
     }
 
-    public void insertMarca(Composicao_exame entidade) {
-        try (PreparedStatement preparedStatement = prapararSQL(INSERT_COMPOSICAO_EXAME_SQL)) {
-            preparedStatement.setString(1, entidade.getDescricao());
+    public void insertSigla_formacao(Sigla_formacao entidade) {
+        try (PreparedStatement preparedStatement = prapararSQL(INSERT_SIGLA_FORMACAO_SQL)) {
+            preparedStatement.setString(1, entidade.getSigla());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
@@ -43,16 +43,15 @@ public class Sigla_formacaoDAO extends ConexaoDB{
         }
     }
 
-    public Composicao_exame selectMarca(int id) {
-        Composicao_exame entidade = null;
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_COMPOSICAO_EXAME_BY_ID)) {
+    public Sigla_formacao selectSigla_formacao(int id) {
+        Sigla_formacao entidade = null;
+        try (PreparedStatement preparedStatement = prapararSQL(SELECT_SIGLA_FORMACAO_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                String descricao = rs.getString("descricao");
-                Integer unidade_medida_id = rs.getInt("unidade_medida_id");
-                entidade = new Composicao_exame(id, descricao,unidade_medida_id);
+                String sigla = rs.getString("sigla");
+                entidade = new Sigla_formacao(id, sigla);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -62,16 +61,15 @@ public class Sigla_formacaoDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<Composicao_exame> selectAllMarcas() {
-        List<Composicao_exame> entidades = new ArrayList<>();
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_COMPOSICAO_EXAME)) {
+    public List<Sigla_formacao> selectAllSigla_formacao() {
+        List<Sigla_formacao> entidades = new ArrayList<>();
+        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_SIGLA_FORMACAO)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String descricao = rs.getString("descricao");
-                Integer unidade_medida_id = rs.getInt("unidade_medida_id");
-                entidades.add(new Composicao_exame(id, descricao, unidade_medida_id));
+                String sigla = rs.getString("sigla");
+                entidades.add(new Sigla_formacao(id, sigla));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -81,8 +79,8 @@ public class Sigla_formacaoDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean deleteMarca(int id) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(DELETE_COMPOSICAO_EXAME_SQL)) {
+    public boolean deleteSigla_formacao(int id) throws SQLException {
+        try (PreparedStatement statement = prapararSQL(DELETE_SIGLA_FORMACAO_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
@@ -90,9 +88,9 @@ public class Sigla_formacaoDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateMarca(Composicao_exame entidade) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(UPDATE_COMPOSICAO_EXAME_SQL)) {
-            statement.setString(1, entidade.getDescricao());
+    public boolean updateSigla_formacao(Sigla_formacao entidade) throws SQLException {
+        try (PreparedStatement statement = prapararSQL(UPDATE_SIGLA_FORMACAO_SQL)) {
+            statement.setString(1, entidade.getSigla());
             statement.setInt(2, entidade.getId());
 
             return statement.executeUpdate() > 0;

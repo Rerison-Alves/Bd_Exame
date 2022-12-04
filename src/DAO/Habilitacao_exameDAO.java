@@ -1,6 +1,6 @@
 package DAO;
 
-import model.Composicao_exame;
+import model.Habilitacao_exame;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,9 +32,12 @@ public class Habilitacao_exameDAO extends ConexaoDB{
         return count;
     }
 
-    public void insertMarca(Composicao_exame entidade) {
-        try (PreparedStatement preparedStatement = prapararSQL(INSERT_COMPOSICAO_EXAME_SQL)) {
-            preparedStatement.setString(1, entidade.getDescricao());
+    public void insertHabilitacao_exame(Habilitacao_exame entidade) {
+        try (PreparedStatement preparedStatement = prapararSQL(INSERT_HABILITACAO_EXAME_SQL)) {
+            preparedStatement.setString(1, entidade.getObservacao());
+            preparedStatement.setDouble(2, entidade.getCusto());
+            preparedStatement.setInt(3, entidade.getLaboratorio_id());
+            preparedStatement.setInt(4, entidade.getTipo_exame_id());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
@@ -43,16 +46,18 @@ public class Habilitacao_exameDAO extends ConexaoDB{
         }
     }
 
-    public Composicao_exame selectMarca(int id) {
-        Composicao_exame entidade = null;
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_COMPOSICAO_EXAME_BY_ID)) {
+    public Habilitacao_exame selectHabilitacao_exame(int id) {
+        Habilitacao_exame entidade = null;
+        try (PreparedStatement preparedStatement = prapararSQL(SELECT_HABILITACAO_EXAME_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                String descricao = rs.getString("descricao");
-                Integer unidade_medida_id = rs.getInt("unidade_medida_id");
-                entidade = new Composicao_exame(id, descricao,unidade_medida_id);
+                String observacao = rs.getString("observacao");
+                Double custo = rs.getDouble("custo");
+                Integer laboratorio_id = rs.getInt("laboratorio_id");
+                Integer tipo_exame_id = rs.getInt("tipo_exame_id");
+                entidade = new Habilitacao_exame(id,observacao,custo,laboratorio_id,tipo_exame_id);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -62,16 +67,18 @@ public class Habilitacao_exameDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<Composicao_exame> selectAllMarcas() {
-        List<Composicao_exame> entidades = new ArrayList<>();
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_COMPOSICAO_EXAME)) {
+    public List<Habilitacao_exame> selectAllHabilitacao_exame() {
+        List<Habilitacao_exame> entidades = new ArrayList<>();
+        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_HABILITACAO_EXAME)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String descricao = rs.getString("descricao");
-                Integer unidade_medida_id = rs.getInt("unidade_medida_id");
-                entidades.add(new Composicao_exame(id, descricao, unidade_medida_id));
+                String observacao = rs.getString("observacao");
+                Double custo = rs.getDouble("custo");
+                Integer laboratorio_id = rs.getInt("laboratorio_id");
+                Integer tipo_exame_id = rs.getInt("tipo_exame_id");
+                entidades.add(new Habilitacao_exame(id, observacao,custo,laboratorio_id,tipo_exame_id));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -81,8 +88,8 @@ public class Habilitacao_exameDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean deleteMarca(int id) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(DELETE_COMPOSICAO_EXAME_SQL)) {
+    public boolean deleteHabilitacao_exame(int id) throws SQLException {
+        try (PreparedStatement statement = prapararSQL(DELETE_HABILITACAO_EXAME_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
@@ -90,10 +97,13 @@ public class Habilitacao_exameDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateMarca(Composicao_exame entidade) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(UPDATE_COMPOSICAO_EXAME_SQL)) {
-            statement.setString(1, entidade.getDescricao());
-            statement.setInt(2, entidade.getId());
+    public boolean updateMarca(Habilitacao_exame entidade) throws SQLException {
+        try (PreparedStatement statement = prapararSQL(UPDATE_HABILITACAO_EXAME_SQL)) {
+            statement.setString(1, entidade.getObservacao());
+            statement.setDouble(2, entidade.getCusto());
+            statement.setInt(3, entidade.getLaboratorio_id());
+            statement.setInt(4, entidade.getTipo_exame_id());
+            statement.setInt(5, entidade.getId());
 
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {

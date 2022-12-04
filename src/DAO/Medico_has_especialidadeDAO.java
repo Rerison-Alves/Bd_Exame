@@ -1,6 +1,6 @@
 package DAO;
 
-import model.Composicao_exame;
+import model.Medico_has_especialidade;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,9 +32,10 @@ public class Medico_has_especialidadeDAO extends ConexaoDB{
         return count;
     }
 
-    public void insertMarca(Composicao_exame entidade) {
-        try (PreparedStatement preparedStatement = prapararSQL(INSERT_COMPOSICAO_EXAME_SQL)) {
-            preparedStatement.setString(1, entidade.getDescricao());
+    public void insertMedico_has_especialidade(Medico_has_especialidade entidade) {
+        try (PreparedStatement preparedStatement = prapararSQL(INSERT_MEDICO_HAS_ESPECIALIDADE_SQL)) {
+            preparedStatement.setInt(1, entidade.getMedico_id());
+            preparedStatement.setInt(2, entidade.getEspecialidade_id());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
@@ -43,16 +44,16 @@ public class Medico_has_especialidadeDAO extends ConexaoDB{
         }
     }
 
-    public Composicao_exame selectMarca(int id) {
-        Composicao_exame entidade = null;
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_COMPOSICAO_EXAME_BY_ID)) {
+    public Medico_has_especialidade selectMedico_has_especialidade(int id) {
+        Medico_has_especialidade entidade = null;
+        try (PreparedStatement preparedStatement = prapararSQL(SELECT_MEDICO_HAS_ESPECIALIDADE_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                String descricao = rs.getString("descricao");
-                Integer unidade_medida_id = rs.getInt("unidade_medida_id");
-                entidade = new Composicao_exame(id, descricao,unidade_medida_id);
+                Integer medico_id = rs.getInt("medico_id");
+                Integer especialidade_id = rs.getInt("especialidade_id");
+                entidade = new Medico_has_especialidade(id,medico_id,especialidade_id);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -62,16 +63,16 @@ public class Medico_has_especialidadeDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<Composicao_exame> selectAllMarcas() {
-        List<Composicao_exame> entidades = new ArrayList<>();
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_COMPOSICAO_EXAME)) {
+    public List<Medico_has_especialidade> selectAllMedico_has_especialidade() {
+        List<Medico_has_especialidade> entidades = new ArrayList<>();
+        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_MEDICO_HAS_ESPECIALIDADE)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String descricao = rs.getString("descricao");
-                Integer unidade_medida_id = rs.getInt("unidade_medida_id");
-                entidades.add(new Composicao_exame(id, descricao, unidade_medida_id));
+                Integer medico_id = rs.getInt("medico_id");
+                Integer especialidade_id = rs.getInt("especialidade_id");
+                entidades.add(new Medico_has_especialidade(id,medico_id,especialidade_id));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -81,8 +82,8 @@ public class Medico_has_especialidadeDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean deleteMarca(int id) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(DELETE_COMPOSICAO_EXAME_SQL)) {
+    public boolean deleteMedico_has_especialidade(int id) throws SQLException {
+        try (PreparedStatement statement = prapararSQL(DELETE_MEDICO_HAS_ESPECIALIDADE_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
@@ -90,10 +91,11 @@ public class Medico_has_especialidadeDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateMarca(Composicao_exame entidade) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(UPDATE_COMPOSICAO_EXAME_SQL)) {
-            statement.setString(1, entidade.getDescricao());
-            statement.setInt(2, entidade.getId());
+    public boolean updateMedico_has_especialidade(Medico_has_especialidade entidade) throws SQLException {
+        try (PreparedStatement statement = prapararSQL(UPDATE_MEDICO_HAS_ESPECIALIDADE_SQL)) {
+            statement.setInt(1, entidade.getMedico_id());
+            statement.setInt(2, entidade.getEspecialidade_id());
+            statement.setInt(3, entidade.getId());
 
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {

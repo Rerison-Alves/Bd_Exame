@@ -1,6 +1,6 @@
 package DAO;
 
-import model.Composicao_exame;
+import model.Responsavel_tecnico;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,9 +32,12 @@ public class Responsavel_tecnicoDAO extends ConexaoDB{
         return count;
     }
 
-    public void insertMarca(Composicao_exame entidade) {
-        try (PreparedStatement preparedStatement = prapararSQL(INSERT_COMPOSICAO_EXAME_SQL)) {
-            preparedStatement.setString(1, entidade.getDescricao());
+    public void insertResponsavel_tecnico(Responsavel_tecnico entidade) {
+        try (PreparedStatement preparedStatement = prapararSQL(INSERT_RESPONSAVEL_TECNICO_SQL)) {
+            preparedStatement.setString(1, entidade.getNome());
+            preparedStatement.setString(2, entidade.getConselho());
+            preparedStatement.setString(3, entidade.getFormacao());
+            preparedStatement.setInt(4, entidade.getSigla_formacao_id());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
@@ -43,16 +46,18 @@ public class Responsavel_tecnicoDAO extends ConexaoDB{
         }
     }
 
-    public Composicao_exame selectMarca(int id) {
-        Composicao_exame entidade = null;
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_COMPOSICAO_EXAME_BY_ID)) {
+    public Responsavel_tecnico selectResponsavel_tecnico(int id) {
+        Responsavel_tecnico entidade = null;
+        try (PreparedStatement preparedStatement = prapararSQL(SELECT_RESPONSAVEL_TECNICO_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                String descricao = rs.getString("descricao");
-                Integer unidade_medida_id = rs.getInt("unidade_medida_id");
-                entidade = new Composicao_exame(id, descricao,unidade_medida_id);
+                String nome = rs.getString("nome");
+                String conselho = rs.getString("conselho");
+                String formacao = rs.getString("formacao");
+                Integer sigla_formacao_id = rs.getInt("sigla_formacao_id");
+                entidade = new Responsavel_tecnico(id,nome,conselho,formacao,sigla_formacao_id);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -62,16 +67,18 @@ public class Responsavel_tecnicoDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<Composicao_exame> selectAllMarcas() {
-        List<Composicao_exame> entidades = new ArrayList<>();
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_COMPOSICAO_EXAME)) {
+    public List<Responsavel_tecnico> selectAllResponsavel_tecnico() {
+        List<Responsavel_tecnico> entidades = new ArrayList<>();
+        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_RESPONSAVEL_TECNICO)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String descricao = rs.getString("descricao");
-                Integer unidade_medida_id = rs.getInt("unidade_medida_id");
-                entidades.add(new Composicao_exame(id, descricao, unidade_medida_id));
+                String nome = rs.getString("nome");
+                String conselho = rs.getString("conselho");
+                String formacao = rs.getString("formacao");
+                Integer sigla_formacao_id = rs.getInt("sigla_formacao_id");
+                entidades.add(new Responsavel_tecnico(id,nome,conselho,formacao,sigla_formacao_id));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -81,8 +88,8 @@ public class Responsavel_tecnicoDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean deleteMarca(int id) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(DELETE_COMPOSICAO_EXAME_SQL)) {
+    public boolean deleteResponsavel_tecnico(int id) throws SQLException {
+        try (PreparedStatement statement = prapararSQL(DELETE_RESPONSAVEL_TECNICO_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
@@ -90,10 +97,13 @@ public class Responsavel_tecnicoDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateMarca(Composicao_exame entidade) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(UPDATE_COMPOSICAO_EXAME_SQL)) {
-            statement.setString(1, entidade.getDescricao());
-            statement.setInt(2, entidade.getId());
+    public boolean updateResponsavel_tecnico(Responsavel_tecnico entidade) throws SQLException {
+        try (PreparedStatement statement = prapararSQL(UPDATE_RESPONSAVEL_TECNICO_SQL)) {
+            statement.setString(1, entidade.getNome());
+            statement.setString(2, entidade.getConselho());
+            statement.setString(3, entidade.getFormacao());
+            statement.setInt(4, entidade.getSigla_formacao_id());
+            statement.setInt(5, entidade.getId());
 
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {

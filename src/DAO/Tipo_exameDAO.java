@@ -1,6 +1,6 @@
 package DAO;
 
-import model.Composicao_exame;
+import model.Tipo_exame;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,9 +32,10 @@ public class Tipo_exameDAO extends ConexaoDB{
         return count;
     }
 
-    public void insertMarca(Composicao_exame entidade) {
-        try (PreparedStatement preparedStatement = prapararSQL(INSERT_COMPOSICAO_EXAME_SQL)) {
+    public void insertTipo_exame(Tipo_exame entidade) {
+        try (PreparedStatement preparedStatement = prapararSQL(INSERT_TIPO_EXAME_SQL)) {
             preparedStatement.setString(1, entidade.getDescricao());
+            preparedStatement.setString(2, entidade.getObservacao());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
@@ -43,16 +44,16 @@ public class Tipo_exameDAO extends ConexaoDB{
         }
     }
 
-    public Composicao_exame selectMarca(int id) {
-        Composicao_exame entidade = null;
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_COMPOSICAO_EXAME_BY_ID)) {
+    public Tipo_exame selectTipo_exame(int id) {
+        Tipo_exame entidade = null;
+        try (PreparedStatement preparedStatement = prapararSQL(SELECT_TIPO_EXAME_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
                 String descricao = rs.getString("descricao");
-                Integer unidade_medida_id = rs.getInt("unidade_medida_id");
-                entidade = new Composicao_exame(id, descricao,unidade_medida_id);
+                String observacao = rs.getString("observacao");
+                entidade = new Tipo_exame(id, descricao,observacao);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -62,16 +63,16 @@ public class Tipo_exameDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<Composicao_exame> selectAllMarcas() {
-        List<Composicao_exame> entidades = new ArrayList<>();
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_COMPOSICAO_EXAME)) {
+    public List<Tipo_exame> selectAllTipo_exame() {
+        List<Tipo_exame> entidades = new ArrayList<>();
+        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_TIPO_EXAME)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String descricao = rs.getString("descricao");
-                Integer unidade_medida_id = rs.getInt("unidade_medida_id");
-                entidades.add(new Composicao_exame(id, descricao, unidade_medida_id));
+                String observacao = rs.getString("observacao");
+                entidades.add(new Tipo_exame(id, descricao,observacao));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -81,8 +82,8 @@ public class Tipo_exameDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean deleteMarca(int id) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(DELETE_COMPOSICAO_EXAME_SQL)) {
+    public boolean deleteTipo_exame(int id) throws SQLException {
+        try (PreparedStatement statement = prapararSQL(DELETE_TIPO_EXAME_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
@@ -90,10 +91,11 @@ public class Tipo_exameDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateMarca(Composicao_exame entidade) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(UPDATE_COMPOSICAO_EXAME_SQL)) {
+    public boolean updateMarca(Tipo_exame entidade) throws SQLException {
+        try (PreparedStatement statement = prapararSQL(UPDATE_TIPO_EXAME_SQL)) {
             statement.setString(1, entidade.getDescricao());
-            statement.setInt(2, entidade.getId());
+            statement.setString(2, entidade.getObservacao());
+            statement.setInt(3, entidade.getId());
 
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {

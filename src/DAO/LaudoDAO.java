@@ -1,7 +1,8 @@
 package DAO;
 
-import model.Composicao_exame;
+import model.Laudo;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,9 +33,12 @@ public class LaudoDAO extends ConexaoDB{
         return count;
     }
 
-    public void insertMarca(Composicao_exame entidade) {
-        try (PreparedStatement preparedStatement = prapararSQL(INSERT_COMPOSICAO_EXAME_SQL)) {
-            preparedStatement.setString(1, entidade.getDescricao());
+    public void insertLaudo(Laudo entidade) {
+        try (PreparedStatement preparedStatement = prapararSQL(INSERT_LAUDO_SQL)) {
+            preparedStatement.setString(1, entidade.getAssinatura_digital());
+            preparedStatement.setDate(2, new java.sql.Date(entidade.getDt_resultado().getTime()));
+            preparedStatement.setString(3, entidade.getCodigo());
+            preparedStatement.setInt(4, entidade.getSolicitacao_exame_id());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
@@ -43,16 +47,18 @@ public class LaudoDAO extends ConexaoDB{
         }
     }
 
-    public Composicao_exame selectMarca(int id) {
-        Composicao_exame entidade = null;
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_COMPOSICAO_EXAME_BY_ID)) {
+    public Laudo selectLaudo(int id) {
+        Laudo entidade = null;
+        try (PreparedStatement preparedStatement = prapararSQL(SELECT_LAUDO_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                String descricao = rs.getString("descricao");
-                Integer unidade_medida_id = rs.getInt("unidade_medida_id");
-                entidade = new Composicao_exame(id, descricao,unidade_medida_id);
+                String assinatura_digital = rs.getString("assinatura_digital");
+                java.util.Date dt_resultado = new java.util.Date(rs.getDate("dt_resultado").getTime());
+                String codigo = rs.getString("codigo");
+                Integer solicitacao_exame_id = rs.getInt("solicitacao_exame_id");
+                entidade = new Laudo(id,assinatura_digital,dt_resultado,codigo,solicitacao_exame_id);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -62,16 +68,18 @@ public class LaudoDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<Composicao_exame> selectAllMarcas() {
-        List<Composicao_exame> entidades = new ArrayList<>();
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_COMPOSICAO_EXAME)) {
+    public List<Laudo> selectAllLaudo() {
+        List<Laudo> entidades = new ArrayList<>();
+        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_LAUDO)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String descricao = rs.getString("descricao");
-                Integer unidade_medida_id = rs.getInt("unidade_medida_id");
-                entidades.add(new Composicao_exame(id, descricao, unidade_medida_id));
+                String assinatura_digital = rs.getString("assinatura_digital");
+                java.util.Date dt_resultado = new java.util.Date(rs.getDate("dt_resultado").getTime());
+                String codigo = rs.getString("codigo");
+                Integer solicitacao_exame_id = rs.getInt("solicitacao_exame_id");
+                entidades.add(new Laudo(id,assinatura_digital,dt_resultado,codigo,solicitacao_exame_id));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -81,8 +89,8 @@ public class LaudoDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean deleteMarca(int id) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(DELETE_COMPOSICAO_EXAME_SQL)) {
+    public boolean deleteLaudo(int id) throws SQLException {
+        try (PreparedStatement statement = prapararSQL(DELETE_LAUDO_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
@@ -90,10 +98,13 @@ public class LaudoDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateMarca(Composicao_exame entidade) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(UPDATE_COMPOSICAO_EXAME_SQL)) {
-            statement.setString(1, entidade.getDescricao());
-            statement.setInt(2, entidade.getId());
+    public boolean updateLaudo(Laudo entidade) throws SQLException {
+        try (PreparedStatement statement = prapararSQL(UPDATE_LAUDO_SQL)) {
+            statement.setString(1, entidade.getAssinatura_digital());
+            statement.setDate(2, new java.sql.Date(entidade.getDt_resultado().getTime()));
+            statement.setString(3, entidade.getCodigo());
+            statement.setInt(4, entidade.getSolicitacao_exame_id());
+            statement.setInt(5, entidade.getId());
 
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {

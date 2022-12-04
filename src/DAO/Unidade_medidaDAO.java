@@ -1,6 +1,6 @@
 package DAO;
 
-import model.Composicao_exame;
+import model.Unidade_medida;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,8 +32,8 @@ public class Unidade_medidaDAO extends ConexaoDB{
         return count;
     }
 
-    public void insertMarca(Composicao_exame entidade) {
-        try (PreparedStatement preparedStatement = prapararSQL(INSERT_COMPOSICAO_EXAME_SQL)) {
+    public void insertUnidade_medida(Unidade_medida entidade) {
+        try (PreparedStatement preparedStatement = prapararSQL(INSERT_UNIDADE_MEDIDA_SQL)) {
             preparedStatement.setString(1, entidade.getDescricao());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -43,16 +43,15 @@ public class Unidade_medidaDAO extends ConexaoDB{
         }
     }
 
-    public Composicao_exame selectMarca(int id) {
-        Composicao_exame entidade = null;
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_COMPOSICAO_EXAME_BY_ID)) {
+    public Unidade_medida selectUnidade_medida(int id) {
+        Unidade_medida entidade = null;
+        try (PreparedStatement preparedStatement = prapararSQL(SELECT_UNIDADE_MEDIDA_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
                 String descricao = rs.getString("descricao");
-                Integer unidade_medida_id = rs.getInt("unidade_medida_id");
-                entidade = new Composicao_exame(id, descricao,unidade_medida_id);
+                entidade = new Unidade_medida(id, descricao);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -62,16 +61,15 @@ public class Unidade_medidaDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<Composicao_exame> selectAllMarcas() {
-        List<Composicao_exame> entidades = new ArrayList<>();
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_COMPOSICAO_EXAME)) {
+    public List<Unidade_medida> selectAllMarcas() {
+        List<Unidade_medida> entidades = new ArrayList<>();
+        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_UNIDADE_MEDIDA)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String descricao = rs.getString("descricao");
-                Integer unidade_medida_id = rs.getInt("unidade_medida_id");
-                entidades.add(new Composicao_exame(id, descricao, unidade_medida_id));
+                entidades.add(new Unidade_medida(id, descricao));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -81,8 +79,8 @@ public class Unidade_medidaDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean deleteMarca(int id) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(DELETE_COMPOSICAO_EXAME_SQL)) {
+    public boolean deleteUnidade_medida(int id) throws SQLException {
+        try (PreparedStatement statement = prapararSQL(DELETE_UNIDADE_MEDIDA_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
@@ -90,8 +88,8 @@ public class Unidade_medidaDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateMarca(Composicao_exame entidade) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(UPDATE_COMPOSICAO_EXAME_SQL)) {
+    public boolean updateUnidade_medida(Unidade_medida entidade) throws SQLException {
+        try (PreparedStatement statement = prapararSQL(UPDATE_UNIDADE_MEDIDA_SQL)) {
             statement.setString(1, entidade.getDescricao());
             statement.setInt(2, entidade.getId());
 

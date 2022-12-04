@@ -1,6 +1,6 @@
 package DAO;
 
-import model.Composicao_exame;
+import model.Laboratorio;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LaboratorioDAO {
+public class LaboratorioDAO extends ConexaoDB{
     private static final String INSERT_LABORATORIO_SQL = "INSERT INTO laboratorio (descricao,CNES,CNPJ,CRBM,nome_fantasia) VALUES (?,?,?,?,?);";
     private static final String SELECT_LABORATORIO_BY_ID = "SELECT id, * FROM laboratorio WHERE id = ?";
     private static final String SELECT_ALL_LABORATORIO = "SELECT * FROM laboratorio;";
@@ -32,9 +32,13 @@ public class LaboratorioDAO {
         return count;
     }
 
-    public void insertMarca(Composicao_exame entidade) {
-        try (PreparedStatement preparedStatement = prapararSQL(INSERT_COMPOSICAO_EXAME_SQL)) {
+    public void insertLaboratorio(Laboratorio entidade) {
+        try (PreparedStatement preparedStatement = prapararSQL(INSERT_LABORATORIO_SQL)) {
             preparedStatement.setString(1, entidade.getDescricao());
+            preparedStatement.setString(2, entidade.getCNES());
+            preparedStatement.setString(3, entidade.getCNPJ());
+            preparedStatement.setString(4, entidade.getCRBM());
+            preparedStatement.setString(5, entidade.getNome_fantasia());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
@@ -43,16 +47,19 @@ public class LaboratorioDAO {
         }
     }
 
-    public Composicao_exame selectMarca(int id) {
-        Composicao_exame entidade = null;
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_COMPOSICAO_EXAME_BY_ID)) {
+    public Laboratorio selectLaboratorio(int id) {
+        Laboratorio entidade = null;
+        try (PreparedStatement preparedStatement = prapararSQL(SELECT_LABORATORIO_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
                 String descricao = rs.getString("descricao");
-                Integer unidade_medida_id = rs.getInt("unidade_medida_id");
-                entidade = new Composicao_exame(id, descricao,unidade_medida_id);
+                String CNES = rs.getString("CNES");
+                String CNPJ = rs.getString("CNPJ");
+                String CRBM = rs.getString("CRBM");
+                String nome_fantasia = rs.getString("nome_fantasia");
+                entidade = new Laboratorio(id, descricao,CNES,CNPJ,CRBM,nome_fantasia);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -62,16 +69,19 @@ public class LaboratorioDAO {
         return entidade;
     }
 
-    public List<Composicao_exame> selectAllMarcas() {
-        List<Composicao_exame> entidades = new ArrayList<>();
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_COMPOSICAO_EXAME)) {
+    public List<Laboratorio> selectAllLaboratorio() {
+        List<Laboratorio> entidades = new ArrayList<>();
+        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_LABORATORIO)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String descricao = rs.getString("descricao");
-                Integer unidade_medida_id = rs.getInt("unidade_medida_id");
-                entidades.add(new Composicao_exame(id, descricao, unidade_medida_id));
+                String CNES = rs.getString("CNES");
+                String CNPJ = rs.getString("CNPJ");
+                String CRBM = rs.getString("CRBM");
+                String nome_fantasia = rs.getString("nome_fantasia");
+                entidades.add(new Laboratorio(id, descricao,CNES,CNPJ,CRBM,nome_fantasia));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -81,8 +91,8 @@ public class LaboratorioDAO {
         return entidades;
     }
 
-    public boolean deleteMarca(int id) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(DELETE_COMPOSICAO_EXAME_SQL)) {
+    public boolean deleteLaboratorio(int id) throws SQLException {
+        try (PreparedStatement statement = prapararSQL(DELETE_LABORATORIO_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
@@ -90,10 +100,14 @@ public class LaboratorioDAO {
         }
     }
 
-    public boolean updateMarca(Composicao_exame entidade) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(UPDATE_COMPOSICAO_EXAME_SQL)) {
+    public boolean updateLaboratorio(Laboratorio entidade) throws SQLException {
+        try (PreparedStatement statement = prapararSQL(UPDATE_LABORATORIO_SQL)) {
             statement.setString(1, entidade.getDescricao());
-            statement.setInt(2, entidade.getId());
+            statement.setString(2, entidade.getCNES());
+            statement.setString(3, entidade.getCNPJ());
+            statement.setString(4, entidade.getCRBM());
+            statement.setString(5, entidade.getNome_fantasia());
+            statement.setInt(6, entidade.getId());
 
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {

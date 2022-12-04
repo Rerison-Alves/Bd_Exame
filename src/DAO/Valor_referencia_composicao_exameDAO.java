@@ -1,6 +1,6 @@
 package DAO;
 
-import model.Composicao_exame;
+import model.Valor_referencia_composicao_exame;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,9 +32,13 @@ public class Valor_referencia_composicao_exameDAO extends ConexaoDB{
         return count;
     }
 
-    public void insertMarca(Composicao_exame entidade) {
-        try (PreparedStatement preparedStatement = prapararSQL(INSERT_COMPOSICAO_EXAME_SQL)) {
-            preparedStatement.setString(1, entidade.getDescricao());
+    public void insertValor_referencia_composicao_exame(Valor_referencia_composicao_exame entidade) {
+        try (PreparedStatement preparedStatement = prapararSQL(INSERT_VALOR_REFERENCIA_COMPOSICAO_EXAME_SQL)) {
+            preparedStatement.setString(1, entidade.getValor_minimo());
+            preparedStatement.setString(2, entidade.getValor_maximo());
+            preparedStatement.setString(3, entidade.getLimitador_minimo());
+            preparedStatement.setString(4, entidade.getLimitador_maximo());
+            preparedStatement.setInt(5, entidade.getUnidade_medida_id());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
@@ -43,16 +47,19 @@ public class Valor_referencia_composicao_exameDAO extends ConexaoDB{
         }
     }
 
-    public Composicao_exame selectMarca(int id) {
-        Composicao_exame entidade = null;
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_COMPOSICAO_EXAME_BY_ID)) {
+    public Valor_referencia_composicao_exame selectValor_referencia_composicao_exame(int id) {
+        Valor_referencia_composicao_exame entidade = null;
+        try (PreparedStatement preparedStatement = prapararSQL(SELECT_VALOR_REFERENCIA_COMPOSICAO_EXAME_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                String descricao = rs.getString("descricao");
+                String valor_minimo = rs.getString("valor_minimo");
+                String valor_maximo = rs.getString("valor_maximo");
+                String limitador_minimo = rs.getString("limitador_minimo");
+                String limitador_maximo = rs.getString("limitador_maximo");
                 Integer unidade_medida_id = rs.getInt("unidade_medida_id");
-                entidade = new Composicao_exame(id, descricao,unidade_medida_id);
+                entidade = new Valor_referencia_composicao_exame(id,valor_minimo,valor_maximo,limitador_minimo,limitador_maximo,unidade_medida_id);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -62,16 +69,19 @@ public class Valor_referencia_composicao_exameDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<Composicao_exame> selectAllMarcas() {
-        List<Composicao_exame> entidades = new ArrayList<>();
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_COMPOSICAO_EXAME)) {
+    public List<Valor_referencia_composicao_exame> selectAllValor_referencia_composicao_exame() {
+        List<Valor_referencia_composicao_exame> entidades = new ArrayList<>();
+        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_VALOR_REFERENCIA_COMPOSICAO_EXAME)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String descricao = rs.getString("descricao");
+                String valor_minimo = rs.getString("valor_minimo");
+                String valor_maximo = rs.getString("valor_maximo");
+                String limitador_minimo = rs.getString("limitador_minimo");
+                String limitador_maximo = rs.getString("limitador_maximo");
                 Integer unidade_medida_id = rs.getInt("unidade_medida_id");
-                entidades.add(new Composicao_exame(id, descricao, unidade_medida_id));
+                entidades.add(new Valor_referencia_composicao_exame(id,valor_minimo,valor_maximo,limitador_minimo,limitador_maximo,unidade_medida_id));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -81,8 +91,8 @@ public class Valor_referencia_composicao_exameDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean deleteMarca(int id) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(DELETE_COMPOSICAO_EXAME_SQL)) {
+    public boolean deleteValor_referencia_composicao_exame(int id) throws SQLException {
+        try (PreparedStatement statement = prapararSQL(DELETE_VALOR_REFERENCIA_COMPOSICAO_EXAME_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
@@ -90,10 +100,14 @@ public class Valor_referencia_composicao_exameDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateMarca(Composicao_exame entidade) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(UPDATE_COMPOSICAO_EXAME_SQL)) {
-            statement.setString(1, entidade.getDescricao());
-            statement.setInt(2, entidade.getId());
+    public boolean updateValor_referencia_composicao_exame(Valor_referencia_composicao_exame entidade) throws SQLException {
+        try (PreparedStatement statement = prapararSQL(UPDATE_VALOR_REFERENCIA_COMPOSICAO_EXAME_SQL)) {
+            statement.setString(1, entidade.getValor_minimo());
+            statement.setString(2, entidade.getValor_maximo());
+            statement.setString(3, entidade.getLimitador_minimo());
+            statement.setString(4, entidade.getLimitador_maximo());
+            statement.setInt(5, entidade.getUnidade_medida_id());
+            statement.setInt(6, entidade.getId());
 
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
