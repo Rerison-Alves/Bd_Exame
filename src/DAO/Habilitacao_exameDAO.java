@@ -97,7 +97,7 @@ public class Habilitacao_exameDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateMarca(Habilitacao_exame entidade) throws SQLException {
+    public boolean updateHabilitacao_exame(Habilitacao_exame entidade) throws SQLException {
         try (PreparedStatement statement = prapararSQL(UPDATE_HABILITACAO_EXAME_SQL)) {
             statement.setString(1, entidade.getObservacao());
             statement.setDouble(2, entidade.getCusto());

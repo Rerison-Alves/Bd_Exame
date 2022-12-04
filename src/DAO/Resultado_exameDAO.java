@@ -2,14 +2,13 @@ package DAO;
 
 import model.Resultado_exame;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Resultado_ExameDAO extends ConexaoDB{
+public class Resultado_exameDAO extends ConexaoDB{
     private static final String INSERT_RESULTADO_EXAME_SQL = "INSERT INTO resultado_exame (dt_exame,valor,composicao_id,laudo_id) VALUES (?,?,?,?);";
     private static final String SELECT_RESULTADO_EXAME_BY_ID = "SELECT id, * FROM resultado_exame WHERE id = ?";
     private static final String SELECT_ALL_RESULTADO_EXAME = "SELECT * FROM resultado_exame;";

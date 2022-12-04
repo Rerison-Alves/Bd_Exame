@@ -61,7 +61,7 @@ public class Unidade_medidaDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<Unidade_medida> selectAllMarcas() {
+    public List<Unidade_medida> selectAllUnidade_medida() {
         List<Unidade_medida> entidades = new ArrayList<>();
         try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_UNIDADE_MEDIDA)) {
             ResultSet rs = preparedStatement.executeQuery();

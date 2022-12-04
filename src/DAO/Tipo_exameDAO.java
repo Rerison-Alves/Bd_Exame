@@ -91,7 +91,7 @@ public class Tipo_exameDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateMarca(Tipo_exame entidade) throws SQLException {
+    public boolean updateTipo_exame(Tipo_exame entidade) throws SQLException {
         try (PreparedStatement statement = prapararSQL(UPDATE_TIPO_EXAME_SQL)) {
             statement.setString(1, entidade.getDescricao());
             statement.setString(2, entidade.getObservacao());

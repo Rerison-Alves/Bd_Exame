@@ -4,20 +4,10 @@
     <list default="true" id="7cc046ab-9ffc-47ef-8907-1fb60326da91" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DAO/Habilitacao_exameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Habilitacao_exameDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/LaboratorioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/LaboratorioDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/LaudoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/LaudoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Material_exameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Material_exameDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/MedicoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/MedicoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Medico_has_especialidadeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Medico_has_especialidadeDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/PacienteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/PacienteDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Responsavel_tecnicoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Responsavel_tecnicoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Responsavel_tecnico_has_laboratorioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Responsavel_tecnico_has_laboratorioDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Resultado_ExameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Resultado_ExameDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Sigla_formacaoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Sigla_formacaoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Solicitacao_exameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Solicitacao_exameDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAO/Resultado_ExameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Resultado_exameDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DAO/Tipo_exameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Tipo_exameDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DAO/Unidade_medidaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Unidade_medidaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Valor_referencia_composicao_exameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Valor_referencia_composicao_exameDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Teste/Teste.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Teste/Teste.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
