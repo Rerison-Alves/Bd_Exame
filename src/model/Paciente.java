@@ -1,5 +1,7 @@
 package model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Paciente extends GenericModel{
@@ -30,6 +32,8 @@ public class Paciente extends GenericModel{
 
     @Override
     public String toString() {
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String dt_nascimento = dateFormat.format(this.dt_nascimento);
         return "Paciente{" +
                 "nome='" + nome + '\'' +
                 ", dt_nascimento=" + dt_nascimento +

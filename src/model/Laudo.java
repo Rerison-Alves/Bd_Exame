@@ -1,5 +1,7 @@
 package model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Laudo extends GenericModel{
@@ -50,6 +52,8 @@ public class Laudo extends GenericModel{
 
     @Override
     public String toString() {
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+        String dt_resultado = dateFormat.format(this.dt_resultado);
         return "Laudo{" +
                 "assinatura_digital='" + assinatura_digital + '\'' +
                 ", dt_resultado=" + dt_resultado +
