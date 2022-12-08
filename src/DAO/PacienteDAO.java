@@ -5,6 +5,7 @@ import model.Paciente;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -36,7 +37,7 @@ public class PacienteDAO extends ConexaoDB{
     public void insertPaciente(Paciente entidade) {
         try (PreparedStatement preparedStatement = prapararSQL(INSERT_PACIENTE_SQL)) {
             preparedStatement.setString(1, entidade.getNome());
-            preparedStatement.setDate(2, new java.sql.Date(entidade.getDt_nascimento().getTime()));
+            preparedStatement.setTimestamp(2, new Timestamp(entidade.getDt_nascimento().getTime()));
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
@@ -53,7 +54,7 @@ public class PacienteDAO extends ConexaoDB{
 
             while (rs.next()) {
                 String nome = rs.getString("nome");
-                Date dt_nascimento = new Date(rs.getDate("dt_nascimento").getTime());
+                Date dt_nascimento = new Date(rs.getTimestamp("dt_nascimento").getTime());
                 entidade = new Paciente(id,nome,dt_nascimento);
             }
         } catch (SQLException e) {
@@ -72,7 +73,7 @@ public class PacienteDAO extends ConexaoDB{
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String nome = rs.getString("nome");
-                Date dt_nascimento = new Date(rs.getDate("dt_nascimento").getTime());
+                Date dt_nascimento = new Date(rs.getTimestamp("dt_nascimento").getTime());
                 entidades.add(new Paciente(id,nome,dt_nascimento));
             }
         } catch (SQLException e) {
@@ -95,7 +96,7 @@ public class PacienteDAO extends ConexaoDB{
     public boolean updatePaciente(Paciente entidade) throws SQLException {
         try (PreparedStatement statement = prapararSQL(UPDATE_PACIENTE_SQL)) {
             statement.setString(1, entidade.getNome());
-            statement.setDate(2, new java.sql.Date(entidade.getDt_nascimento().getTime()));
+            statement.setTimestamp(2, new Timestamp(entidade.getDt_nascimento().getTime()));
             statement.setInt(3, entidade.getId());
 
             return statement.executeUpdate() > 0;

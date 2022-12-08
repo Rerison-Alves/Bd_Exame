@@ -2,10 +2,7 @@ package DAO;
 
 import model.Laudo;
 
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +33,7 @@ public class LaudoDAO extends ConexaoDB{
     public void insertLaudo(Laudo entidade) {
         try (PreparedStatement preparedStatement = prapararSQL(INSERT_LAUDO_SQL)) {
             preparedStatement.setString(1, entidade.getAssinatura_digital());
-            preparedStatement.setDate(2, new java.sql.Date(entidade.getDt_resultado().getTime()));
+            preparedStatement.setTimestamp(2, new Timestamp(entidade.getDt_resultado().getTime()));
             preparedStatement.setString(3, entidade.getCodigo());
             preparedStatement.setInt(4, entidade.getSolicitacao_exame_id());
             preparedStatement.executeUpdate();
@@ -55,7 +52,7 @@ public class LaudoDAO extends ConexaoDB{
 
             while (rs.next()) {
                 String assinatura_digital = rs.getString("assinatura_digital");
-                java.util.Date dt_resultado = new java.util.Date(rs.getDate("dt_resultado").getTime());
+                java.util.Date dt_resultado = new java.util.Date(rs.getTimestamp("dt_resultado").getTime());
                 String codigo = rs.getString("codigo");
                 Integer solicitacao_exame_id = rs.getInt("solicitacao_exame_id");
                 entidade = new Laudo(id,assinatura_digital,dt_resultado,codigo,solicitacao_exame_id);
@@ -76,7 +73,7 @@ public class LaudoDAO extends ConexaoDB{
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String assinatura_digital = rs.getString("assinatura_digital");
-                java.util.Date dt_resultado = new java.util.Date(rs.getDate("dt_resultado").getTime());
+                java.util.Date dt_resultado = new java.util.Date(rs.getTimestamp("dt_resultado").getTime());
                 String codigo = rs.getString("codigo");
                 Integer solicitacao_exame_id = rs.getInt("solicitacao_exame_id");
                 entidades.add(new Laudo(id,assinatura_digital,dt_resultado,codigo,solicitacao_exame_id));
@@ -101,7 +98,7 @@ public class LaudoDAO extends ConexaoDB{
     public boolean updateLaudo(Laudo entidade) throws SQLException {
         try (PreparedStatement statement = prapararSQL(UPDATE_LAUDO_SQL)) {
             statement.setString(1, entidade.getAssinatura_digital());
-            statement.setDate(2, new java.sql.Date(entidade.getDt_resultado().getTime()));
+            statement.setTimestamp(2, new Timestamp(entidade.getDt_resultado().getTime()));
             statement.setString(3, entidade.getCodigo());
             statement.setInt(4, entidade.getSolicitacao_exame_id());
             statement.setInt(5, entidade.getId());

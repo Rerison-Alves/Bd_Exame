@@ -39,4 +39,6 @@ public class Paciente extends GenericModel{
                 ", dt_nascimento=" + dt_nascimento +
                 "} " + super.toString();
     }
+
+
 }

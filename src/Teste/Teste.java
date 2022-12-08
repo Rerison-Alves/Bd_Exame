@@ -2,17 +2,19 @@ package Teste;
 
 import Servicos.*;
 import model.*;
+import Teste.ResetarBanco;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Teste {
-    
     public static void main(String[] args) {
         //Teste de inserts
         Laboratorio laboratorio = new Laboratorio(null, "laboratorio", "123456789", "123456789", "123456789", "Ana Lima");
@@ -30,7 +32,12 @@ public class Teste {
         ResponsavelTecnico responsavelTecnico = new ResponsavelTecnico(null, "Maria do Socorro", "CME", "Pediatra", 1);
         new ServicoResponsavelTecnico().insertResponsavel_tecnico(responsavelTecnico);
 
-        Paciente paciente = new Paciente(null, "Enzo de Oliveira", new Date(1404788400));
+        Paciente paciente = null;
+        try {
+            paciente = new Paciente(null, "Enzo de Oliveira", new SimpleDateFormat("dd/MM/yyyy").parse("16/07/2014"));
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         new ServicoPaciente().insertPaciente(paciente);
 
         Medico medico = new Medico(null, "123456789", "Alexandre de Morais");
@@ -60,7 +67,7 @@ public class Teste {
         Exame exame = new Exame(null, 1, 1, "Exame", "Padrão");
         new ServicoExame().insertExame(exame);
 
-        SolicitacaoExame solicitacaoExame = new SolicitacaoExame(null, "1234", new Date(), 1, 1);
+        SolicitacaoExame solicitacaoExame = new SolicitacaoExame(null, "1234", new Date(), 1, 1, 1);
         new ServicoSolicitacaoExame().insertSolicitacao_exame(solicitacaoExame);
 
         UnidadeMedida unidadeMedida = new UnidadeMedida(null, "mg");
@@ -130,33 +137,7 @@ public class Teste {
             System.out.println(a);
         }
 
-        //Teste Delete
-        try {
-            new ServicoLaboratorio().deleteLaboratorio(1);
-            new ServicoContato().deleteContato(1);
-            new ServicoEndereco().deleteEndereco(1);
-            new ServicoSiglaFormacao().deleteSigla_formacao(1);
-            new ServicoResponsavelTecnico().deleteResponsavel_tecnico(1);
-            new ServicoPaciente().deletePaciente(1);
-            new ServicoMedico().deleteMedico(1);
-            new ServicoEspecialidade().deleteEspecialidade(1);
-            new ServicoMedicoHasEspecialidade().deleteMedico_has_especialidade(1);
-            new ServicoResponsavelTecnicoHasLaboratorio().deleteResponsavel_tecnico_has_laboratorio(1);
-            new ServicoConsultaMedica().deleteConsulta_medica(1);
-            new ServicoTipoExame().deleteTipo_exame(1);
-            new ServicoHabilitacaoExame().deleteHabilitacao_exame(1);
-            new ServicoMaterialExame().deleteMaterial_exame(1);
-            new ServicoExame().deleteExame(1);
-            new ServicoSolicitacaoExame().deleteSolicitacao_exame(1);
-            new ServicoUnidadeMedida().deleteUnidade_medida(1);
-            new ServicoComposicaoExame().deleteComposicao_exame(1);
-            new ServicoValorReferenciaComposicaoExame().deleteValor_referencia_composicao_exame(1);
-            new ServicoComposicao().deleteComposicao(1);
-            new ServicoLaudo().deleteLaudo(1);
-            new ServicoResultadoExame().deleteResultado_exame(1);
-        }catch (Exception e){
-
-        }
+        ResetarBanco.Reset();
     }
 
 //    private static void getServicos(Object classe) {

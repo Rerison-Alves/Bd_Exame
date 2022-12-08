@@ -5,6 +5,7 @@ import model.ResultadoExame;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class ResultadoExameDAO extends ConexaoDB{
 
     public void insertResultado_exame(ResultadoExame entidade) {
         try (PreparedStatement preparedStatement = prapararSQL(INSERT_RESULTADO_EXAME_SQL)) {
-            preparedStatement.setDate(1, new java.sql.Date(entidade.getDt_exame().getTime()));
+            preparedStatement.setTimestamp(1, new Timestamp(entidade.getDt_exame().getTime()));
             preparedStatement.setString(2, entidade.getValor());
             preparedStatement.setInt(3, entidade.getComposicao_id());
             preparedStatement.setInt(4, entidade.getLaudo_id());
@@ -53,7 +54,7 @@ public class ResultadoExameDAO extends ConexaoDB{
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                java.util.Date dt_exame = new java.util.Date(rs.getDate("dt_exame").getTime());
+                java.util.Date dt_exame = new java.util.Date(rs.getTimestamp("dt_exame").getTime());
                 String valor = rs.getString("valor");
                 Integer composicao_id = rs.getInt("composicao_id");
                 Integer laudo_id = rs.getInt("laudo_id");
@@ -74,7 +75,7 @@ public class ResultadoExameDAO extends ConexaoDB{
 
             while (rs.next()) {
                 int id = rs.getInt("id");
-                java.util.Date dt_exame = new java.util.Date(rs.getDate("dt_exame").getTime());
+                java.util.Date dt_exame = new java.util.Date(rs.getTimestamp("dt_exame").getTime());
                 String valor = rs.getString("valor");
                 Integer composicao_id = rs.getInt("composicao_id");
                 Integer laudo_id = rs.getInt("laudo_id");
@@ -99,7 +100,7 @@ public class ResultadoExameDAO extends ConexaoDB{
 
     public boolean updateResultado_exame(ResultadoExame entidade) throws SQLException {
         try (PreparedStatement statement = prapararSQL(UPDATE_RESULTADO_EXAME_SQL)) {
-            statement.setDate(1, new java.sql.Date(entidade.getDt_exame().getTime()));
+            statement.setTimestamp(1, new Timestamp(entidade.getDt_exame().getTime()));
             statement.setString(2, entidade.getValor());
             statement.setInt(3, entidade.getComposicao_id());
             statement.setInt(4, entidade.getLaudo_id());

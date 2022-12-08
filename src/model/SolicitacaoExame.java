@@ -5,18 +5,20 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class SolicitacaoExame extends GenericModel{
-    public SolicitacaoExame(Integer id, String nm_prescrito, Date dt_solicitacao, Integer consulta_medica_id, Integer habilitacao_exame_id) {
+    public SolicitacaoExame(Integer id, String nm_prescrito, Date dt_solicitacao, Integer consulta_medica_id, Integer habilitacao_exame_id, Integer exame_id) {
         super(id);
         this.nm_prescrito = nm_prescrito;
         this.dt_solicitacao = dt_solicitacao;
         this.consulta_medica_id = consulta_medica_id;
         this.habilitacao_exame_id = habilitacao_exame_id;
+        this.exame_id = exame_id;
     }
 
     private String nm_prescrito;
     private Date dt_solicitacao;
     private Integer consulta_medica_id;
     private Integer habilitacao_exame_id;
+    private Integer exame_id;
 
     public String getNm_prescrito() {
         return nm_prescrito;
@@ -50,15 +52,22 @@ public class SolicitacaoExame extends GenericModel{
         this.habilitacao_exame_id = habilitacao_exame_id;
     }
 
+    public Integer getExame_id() {
+        return exame_id;
+    }
+
+    public void setExame_id(Integer exame_id) {
+        this.exame_id = exame_id;
+    }
+
     @Override
     public String toString() {
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
-        String dt_solicitacao = dateFormat.format(this.dt_solicitacao);
-        return "Solicitacao_exame{" +
+        return "SolicitacaoExame{" +
                 "nm_prescrito='" + nm_prescrito + '\'' +
                 ", dt_solicitacao=" + dt_solicitacao +
                 ", consulta_medica_id=" + consulta_medica_id +
                 ", habilitacao_exame_id=" + habilitacao_exame_id +
-                "} " + super.toString();
+                ", exame_id=" + exame_id +
+                '}';
     }
 }
