@@ -1,35 +1,60 @@
 package Servicos;
 
 import DAO.MedicoDAO;
+import DAO.MedicoHasEspecialidadeDAO;
 import model.Medico;
+import model.MedicoHasEspecialidade;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class ServicoMedico extends MedicoDAO {
+public class ServicoMedico {
 
-    @Override
-    public void insert(Medico entidade) {
-        super.insert(entidade);
+    private MedicoDAO medicoDAO = new MedicoDAO();
+
+    private MedicoHasEspecialidadeDAO medicoHasEspecialidadeDAO = new ServicoMedicoHasEspecialidade();
+
+    private ServicoEspecialidade servicoEspecialidade = new ServicoEspecialidade();
+
+    public Medico insert(Medico entidade) {
+        return medicoDAO.insert(entidade);
     }
 
-    @Override
+
     public Medico select(int id) {
-        return super.select(id);
+        return medicoDAO.select(id);
     }
 
-    @Override
+
     public List<Medico> selectAll() {
-        return super.selectAll();
+        return medicoDAO.selectAll();
     }
 
-    @Override
-    public boolean delete(int id) throws SQLException {
-        return super.delete(id);
+
+    public void delete(int id) throws SQLException {
+        medicoDAO.delete(id);
     }
 
-    @Override
-    public boolean update(Medico entidade) throws SQLException {
-        return super.update(entidade);
+    public void update(Medico entidade) throws SQLException {
+        removerEspecialidadeMedica(entidade);
+        medicoDAO.update(entidade);
+        salvarEspecialidades(entidade, entidade);
+    }
+
+    public Medico salvar(Medico entidade) {
+        Medico medicoNovo = medicoDAO.insert(entidade);
+        medicoNovo.setEspecialidades(entidade.getEspecialidades());
+        salvarEspecialidades(entidade, medicoNovo);
+        return medicoNovo;
+    }
+
+    private void salvarEspecialidades(Medico entidade, Medico medicoNovo) {
+        entidade
+                .getEspecialidades()
+                .forEach(e -> medicoHasEspecialidadeDAO.insert(new MedicoHasEspecialidade(medicoNovo.getId(), e.getId())));
+    }
+
+    public void removerEspecialidadeMedica(Medico medico) throws SQLException {
+        medicoHasEspecialidadeDAO.deleteFromMedicoID(medico.getId());
     }
 }

@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Teste {
     public static void main(String[] args) {
@@ -34,14 +35,15 @@ public class Teste {
         }
         new ServicoPaciente().insert(paciente);
 
-        Medico medico = new Medico(null, "123456789", "Alexandre de Morais");
-        new ServicoMedico().insert(medico);
-
         Especialidade especialidade = new Especialidade(null, "Infectologia", "Doutor");
         new ServicoEspecialidade().insert(especialidade);
 
-        MedicoHasEspecialidade medicoHasEspecialidade = new MedicoHasEspecialidade(null, 1, 1);
-        new ServicoMedicoHasEspecialidade().insert(medicoHasEspecialidade);
+        Especialidade especialidade2 = new Especialidade(null, "Pediatria", "Doutor");
+        new ServicoEspecialidade().insert(especialidade);
+
+        Medico medico = new Medico(null, "123456789", "Alexandre de Morais");
+        medico.setEspecialidades(List.of(especialidade, especialidade2));
+        new ServicoMedico().salvar(medico);
 
         ResponsavelTecnicoHasLaboratorio responsavelTecnicoHasLaboratorio = new ResponsavelTecnicoHasLaboratorio(null, 1, 1);
         new ServicoResponsavelTecnicoHasLaboratorio().insert(responsavelTecnicoHasLaboratorio);
@@ -70,7 +72,7 @@ public class Teste {
         ComposicaoExame composicaoExame = new ComposicaoExame(null, "Composto", 1);
         new ServicoComposicaoExame().insert(composicaoExame);
 
-        ValorReferenciaComposicaoExame valorReferenciaComposicaoExame = new ValorReferenciaComposicaoExame(null, "0", "40", "10",  "50", 1);
+        ValorReferenciaComposicaoExame valorReferenciaComposicaoExame = new ValorReferenciaComposicaoExame(null, "0", "40", "10", "50", 1);
         new ServicoValorReferenciaComposicaoExame().insert(valorReferenciaComposicaoExame);
 
         Composicao composicao = new Composicao(null, 1, 1, 1);
@@ -79,7 +81,7 @@ public class Teste {
         Laudo laudo = new Laudo(null, "123456789", new Date(), "123456789", 1);
         new ServicoLaudo().insert(laudo);
 
-        ResultadoExame resultadoExame = new ResultadoExame(null, new Date(), "130.00", 1 , 1);
+        ResultadoExame resultadoExame = new ResultadoExame(null, new Date(), "130.00", 1, 1);
         new ServicoResultadoExame().insert(resultadoExame);
 
         //Teste toString
@@ -127,7 +129,7 @@ public class Teste {
         toStrings.add(new ServicoLaudo().select(1).toString());
 
         toStrings.add(new ServicoResultadoExame().select(1).toString());
-        for(String a:toStrings){
+        for (String a : toStrings) {
             System.out.println(a);
         }
 

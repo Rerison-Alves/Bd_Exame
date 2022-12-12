@@ -1,9 +1,6 @@
 package DAO;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class ConexaoDB {
     //TODO: criar variáveis de ambiente para os dados de acesso ao banco.
@@ -25,7 +22,7 @@ public class ConexaoDB {
     }
 
     public static PreparedStatement prepararSQL(String sql) throws SQLException, ClassNotFoundException {
-        return conexaoDB().prepareStatement(sql);
+        return conexaoDB().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
     }
 
     public void printSQLException(SQLException ex) {

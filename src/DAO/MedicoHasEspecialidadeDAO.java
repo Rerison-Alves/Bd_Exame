@@ -1,5 +1,6 @@
 package DAO;
 
+import model.Especialidade;
 import model.MedicoHasEspecialidade;
 
 import java.sql.PreparedStatement;
@@ -12,8 +13,8 @@ public class MedicoHasEspecialidadeDAO extends ConexaoDB{
     private static final String INSERT_MEDICO_HAS_ESPECIALIDADE_SQL = "INSERT INTO medico_has_especialidade (medico_id,especialidade_id) VALUES (?,?);";
     private static final String SELECT_MEDICO_HAS_ESPECIALIDADE_BY_ID = "SELECT id, * FROM medico_has_especialidade WHERE id = ?";
     private static final String SELECT_ALL_MEDICO_HAS_ESPECIALIDADE = "SELECT * FROM medico_has_especialidade;";
-    private static final String DELETE_MEDICO_HAS_ESPECIALIDADE_SQL = "DELETE FROM medico_has_especialidade WHERE id = ?;";
-    private static final String UPDATE_MEDICO_HAS_ESPECIALIDADE_SQL = "UPDATE medico_has_especialidade SET medico_id = ?,especialidade_id = ? WHERE id = ?;";
+    private static final String DELETE_MEDICO_HAS_ESPECIALIDADE_FROM_MEDICO_SQL = "DELETE FROM medico_has_especialidade WHERE medico_id = ?;";
+    private static final String UPDATE_MEDICO_HAS_ESPECIALIDADE_SQL = "UPDATE medico_has_especialidade SET medico_id = ?,especialidade_id = ?;";
     private static final String TOTAL = "SELECT count(1) FROM medico_has_especialidade;";
 
     public Integer count() {
@@ -34,8 +35,8 @@ public class MedicoHasEspecialidadeDAO extends ConexaoDB{
 
     public void insert(MedicoHasEspecialidade entidade) {
         try (PreparedStatement preparedStatement = prepararSQL(INSERT_MEDICO_HAS_ESPECIALIDADE_SQL)) {
-            preparedStatement.setInt(1, entidade.getMedico_id());
-            preparedStatement.setInt(2, entidade.getEspecialidade_id());
+            preparedStatement.setInt(1, entidade.getMedicoId());
+            preparedStatement.setInt(2, entidade.getEspecialidadeId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
@@ -53,7 +54,7 @@ public class MedicoHasEspecialidadeDAO extends ConexaoDB{
             while (rs.next()) {
                 Integer medico_id = rs.getInt("medico_id");
                 Integer especialidade_id = rs.getInt("especialidade_id");
-                entidade = new MedicoHasEspecialidade(id,medico_id,especialidade_id);
+                entidade = new MedicoHasEspecialidade(medico_id,especialidade_id);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -72,7 +73,7 @@ public class MedicoHasEspecialidadeDAO extends ConexaoDB{
                 int id = rs.getInt("id");
                 Integer medico_id = rs.getInt("medico_id");
                 Integer especialidade_id = rs.getInt("especialidade_id");
-                entidades.add(new MedicoHasEspecialidade(id,medico_id,especialidade_id));
+                entidades.add(new MedicoHasEspecialidade(medico_id,especialidade_id));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -82,21 +83,9 @@ public class MedicoHasEspecialidadeDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean delete(int id) throws SQLException {
-        try (PreparedStatement statement = prepararSQL(DELETE_MEDICO_HAS_ESPECIALIDADE_SQL)) {
+    public boolean deleteFromMedicoID(int id) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(DELETE_MEDICO_HAS_ESPECIALIDADE_FROM_MEDICO_SQL)) {
             statement.setInt(1, id);
-            return statement.executeUpdate() > 0;
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public boolean update(MedicoHasEspecialidade entidade) throws SQLException {
-        try (PreparedStatement statement = prepararSQL(UPDATE_MEDICO_HAS_ESPECIALIDADE_SQL)) {
-            statement.setInt(1, entidade.getMedico_id());
-            statement.setInt(2, entidade.getEspecialidade_id());
-            statement.setInt(3, entidade.getId());
-
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);

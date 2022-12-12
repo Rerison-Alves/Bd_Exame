@@ -1,15 +1,17 @@
 package model;
 
+import java.util.List;
+
 public class Medico extends GenericModel{
+    private String crm;
+    private String nome;
+
+    private List<Especialidade> especialidades;
     public Medico(Integer id, String crm, String nome) {
         super(id);
         this.crm = crm;
         this.nome = nome;
     }
-
-    private String crm;
-    private String nome;
-
     public String getCrm() {
         return crm;
     }
@@ -24,6 +26,14 @@ public class Medico extends GenericModel{
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public List<Especialidade> getEspecialidades() {
+        return especialidades;
+    }
+
+    public void setEspecialidades(List<Especialidade> especialidades) {
+        this.especialidades = especialidades;
     }
 
     @Override
