@@ -18,7 +18,7 @@ public class LaboratorioDAO extends ConexaoDB{
 
     public Integer count() {
         Integer count = 0;
-        try (PreparedStatement preparedStatement = prapararSQL(TOTAL)) {
+        try (PreparedStatement preparedStatement = prepararSQL(TOTAL)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -32,8 +32,8 @@ public class LaboratorioDAO extends ConexaoDB{
         return count;
     }
 
-    public void insertLaboratorio(Laboratorio entidade) {
-        try (PreparedStatement preparedStatement = prapararSQL(INSERT_LABORATORIO_SQL)) {
+    public void insert(Laboratorio entidade) {
+        try (PreparedStatement preparedStatement = prepararSQL(INSERT_LABORATORIO_SQL)) {
             preparedStatement.setString(1, entidade.getDescricao());
             preparedStatement.setString(2, entidade.getCNES());
             preparedStatement.setString(3, entidade.getCNPJ());
@@ -47,9 +47,9 @@ public class LaboratorioDAO extends ConexaoDB{
         }
     }
 
-    public Laboratorio selectLaboratorio(int id) {
+    public Laboratorio select(int id) {
         Laboratorio entidade = null;
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_LABORATORIO_BY_ID)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_LABORATORIO_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -69,9 +69,9 @@ public class LaboratorioDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<Laboratorio> selectAllLaboratorio() {
+    public List<Laboratorio> selectAll() {
         List<Laboratorio> entidades = new ArrayList<>();
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_LABORATORIO)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_ALL_LABORATORIO)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -91,8 +91,8 @@ public class LaboratorioDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean deleteLaboratorio(int id) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(DELETE_LABORATORIO_SQL)) {
+    public boolean delete(int id) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(DELETE_LABORATORIO_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
@@ -100,8 +100,8 @@ public class LaboratorioDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateLaboratorio(Laboratorio entidade) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(UPDATE_LABORATORIO_SQL)) {
+    public boolean update(Laboratorio entidade) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(UPDATE_LABORATORIO_SQL)) {
             statement.setString(1, entidade.getDescricao());
             statement.setString(2, entidade.getCNES());
             statement.setString(3, entidade.getCNPJ());

@@ -9,27 +9,27 @@ import java.util.List;
 public class ServicoValorReferenciaComposicaoExame extends ValorReferenciaComposicaoExameDAO {
 
     @Override
-    public void insertValor_referencia_composicao_exame(ValorReferenciaComposicaoExame entidade) {
-        super.insertValor_referencia_composicao_exame(entidade);
+    public void insert(ValorReferenciaComposicaoExame entidade) {
+        super.insert(entidade);
     }
 
     @Override
-    public ValorReferenciaComposicaoExame selectValor_referencia_composicao_exame(int id) {
-        return super.selectValor_referencia_composicao_exame(id);
+    public ValorReferenciaComposicaoExame select(int id) {
+        return super.select(id);
     }
 
     @Override
-    public List<ValorReferenciaComposicaoExame> selectAllValor_referencia_composicao_exame() {
-        return super.selectAllValor_referencia_composicao_exame();
+    public List<ValorReferenciaComposicaoExame> selectAll() {
+        return super.selectAll();
     }
 
     @Override
-    public boolean deleteValor_referencia_composicao_exame(int id) throws SQLException {
-        return super.deleteValor_referencia_composicao_exame(id);
+    public boolean delete(int id) throws SQLException {
+        return super.delete(id);
     }
 
     @Override
-    public boolean updateValor_referencia_composicao_exame(ValorReferenciaComposicaoExame entidade) throws SQLException {
-        return super.updateValor_referencia_composicao_exame(entidade);
+    public boolean update(ValorReferenciaComposicaoExame entidade) throws SQLException {
+        return super.update(entidade);
     }
 }

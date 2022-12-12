@@ -9,27 +9,27 @@ import java.util.List;
 public class ServicoEspecialidade extends EspecialidadeDAO {
 
     @Override
-    public void insertEspecialidade(Especialidade entidade) {
-        super.insertEspecialidade(entidade);
+    public void insert(Especialidade entidade) {
+        super.insert(entidade);
     }
 
     @Override
-    public Especialidade selectEspecialidade(int id) {
-        return super.selectEspecialidade(id);
+    public Especialidade select(int id) {
+        return super.select(id);
     }
 
     @Override
-    public List<Especialidade> selectAllEspecialidade() {
-        return super.selectAllEspecialidade();
+    public List<Especialidade> selectAll() {
+        return super.selectAll();
     }
 
     @Override
-    public boolean deleteEspecialidade(int id) throws SQLException {
-        return super.deleteEspecialidade(id);
+    public boolean delete(int id) throws SQLException {
+        return super.delete(id);
     }
 
     @Override
-    public boolean updateEspecialidade(Especialidade entidade) throws SQLException {
-        return super.updateEspecialidade(entidade);
+    public boolean update(Especialidade entidade) throws SQLException {
+        return super.update(entidade);
     }
 }

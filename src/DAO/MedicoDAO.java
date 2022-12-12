@@ -18,7 +18,7 @@ public class MedicoDAO extends ConexaoDB{
 
     public Integer count() {
         Integer count = 0;
-        try (PreparedStatement preparedStatement = prapararSQL(TOTAL)) {
+        try (PreparedStatement preparedStatement = prepararSQL(TOTAL)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -32,8 +32,8 @@ public class MedicoDAO extends ConexaoDB{
         return count;
     }
 
-    public void insertMedico(Medico entidade) {
-        try (PreparedStatement preparedStatement = prapararSQL(INSERT_MEDICO_SQL)) {
+    public void insert(Medico entidade) {
+        try (PreparedStatement preparedStatement = prepararSQL(INSERT_MEDICO_SQL)) {
             preparedStatement.setString(1, entidade.getCrm());
             preparedStatement.setString(2, entidade.getNome());
             preparedStatement.executeUpdate();
@@ -44,9 +44,9 @@ public class MedicoDAO extends ConexaoDB{
         }
     }
 
-    public Medico selectMedico(int id) {
+    public Medico select(int id) {
         Medico entidade = null;
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_MEDICO_BY_ID)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_MEDICO_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -63,9 +63,9 @@ public class MedicoDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<Medico> selectAllMedico() {
+    public List<Medico> selectAll() {
         List<Medico> entidades = new ArrayList<>();
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_MEDICO)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_ALL_MEDICO)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -82,8 +82,8 @@ public class MedicoDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean deleteMedico(int id) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(DELETE_MEDICO_SQL)) {
+    public boolean delete(int id) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(DELETE_MEDICO_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
@@ -91,8 +91,8 @@ public class MedicoDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateMedico(Medico entidade) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(UPDATE_MEDICO_SQL)) {
+    public boolean update(Medico entidade) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(UPDATE_MEDICO_SQL)) {
             statement.setString(1, entidade.getCrm());
             statement.setString(2, entidade.getNome());
             statement.setInt(3, entidade.getId());

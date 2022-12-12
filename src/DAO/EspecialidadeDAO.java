@@ -18,7 +18,7 @@ public class EspecialidadeDAO extends ConexaoDB{
 
     public Integer count() {
         Integer count = 0;
-        try (PreparedStatement preparedStatement = prapararSQL(TOTAL)) {
+        try (PreparedStatement preparedStatement = prepararSQL(TOTAL)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -32,8 +32,8 @@ public class EspecialidadeDAO extends ConexaoDB{
         return count;
     }
 
-    public void insertEspecialidade(Especialidade entidade) {
-        try (PreparedStatement preparedStatement = prapararSQL(INSERT_ESPECIALIDADE_SQL)) {
+    public void insert(Especialidade entidade) {
+        try (PreparedStatement preparedStatement = prepararSQL(INSERT_ESPECIALIDADE_SQL)) {
             preparedStatement.setString(1, entidade.getDescricao());
             preparedStatement.setString(2, entidade.getObservacao());
             preparedStatement.executeUpdate();
@@ -44,9 +44,9 @@ public class EspecialidadeDAO extends ConexaoDB{
         }
     }
 
-    public Especialidade selectEspecialidade(int id) {
+    public Especialidade select(int id) {
         Especialidade entidade = null;
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ESPECIALIDADE_BY_ID)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_ESPECIALIDADE_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -63,9 +63,9 @@ public class EspecialidadeDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<Especialidade> selectAllEspecialidade() {
+    public List<Especialidade> selectAll() {
         List<Especialidade> entidades = new ArrayList<>();
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_ESPECIALIDADE)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_ALL_ESPECIALIDADE)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -82,8 +82,8 @@ public class EspecialidadeDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean deleteEspecialidade(int id) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(DELETE_ESPECIALIDADE_SQL)) {
+    public boolean delete(int id) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(DELETE_ESPECIALIDADE_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
@@ -91,8 +91,8 @@ public class EspecialidadeDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateEspecialidade(Especialidade entidade) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(UPDATE_ESPECIALIDADE_SQL)) {
+    public boolean update(Especialidade entidade) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(UPDATE_ESPECIALIDADE_SQL)) {
             statement.setString(1, entidade.getDescricao());
             statement.setString(2, entidade.getObservacao());
             statement.setInt(3, entidade.getId());

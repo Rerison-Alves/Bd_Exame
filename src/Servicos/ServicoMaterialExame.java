@@ -9,27 +9,27 @@ import java.util.List;
 public class ServicoMaterialExame extends MaterialExameDAO {
 
     @Override
-    public void insertMaterial_exame(MaterialExame entidade) {
-        super.insertMaterial_exame(entidade);
+    public void insert(MaterialExame entidade) {
+        super.insert(entidade);
     }
 
     @Override
-    public MaterialExame selectMaterial_exame(int id) {
-        return super.selectMaterial_exame(id);
+    public MaterialExame select(int id) {
+        return super.select(id);
     }
 
     @Override
-    public List<MaterialExame> selectAllMaterial_exame() {
-        return super.selectAllMaterial_exame();
+    public List<MaterialExame> selectAll() {
+        return super.selectAll();
     }
 
     @Override
-    public boolean deleteMaterial_exame(int id) throws SQLException {
-        return super.deleteMaterial_exame(id);
+    public boolean delete(int id) throws SQLException {
+        return super.delete(id);
     }
 
     @Override
-    public boolean updateMaterial_exame(MaterialExame entidade) throws SQLException {
-        return super.updateMaterial_exame(entidade);
+    public boolean update(MaterialExame entidade) throws SQLException {
+        return super.update(entidade);
     }
 }

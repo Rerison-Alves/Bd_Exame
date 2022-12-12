@@ -18,7 +18,7 @@ public class HabilitacaoExameDAO extends ConexaoDB{
 
     public Integer count() {
         Integer count = 0;
-        try (PreparedStatement preparedStatement = prapararSQL(TOTAL)) {
+        try (PreparedStatement preparedStatement = prepararSQL(TOTAL)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -32,8 +32,8 @@ public class HabilitacaoExameDAO extends ConexaoDB{
         return count;
     }
 
-    public void insertHabilitacao_exame(HabilitacaoExame entidade) {
-        try (PreparedStatement preparedStatement = prapararSQL(INSERT_HABILITACAO_EXAME_SQL)) {
+    public void insert(HabilitacaoExame entidade) {
+        try (PreparedStatement preparedStatement = prepararSQL(INSERT_HABILITACAO_EXAME_SQL)) {
             preparedStatement.setString(1, entidade.getObservacao());
             preparedStatement.setDouble(2, entidade.getCusto());
             preparedStatement.setInt(3, entidade.getLaboratorio_id());
@@ -46,9 +46,9 @@ public class HabilitacaoExameDAO extends ConexaoDB{
         }
     }
 
-    public HabilitacaoExame selectHabilitacao_exame(int id) {
+    public HabilitacaoExame select(int id) {
         HabilitacaoExame entidade = null;
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_HABILITACAO_EXAME_BY_ID)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_HABILITACAO_EXAME_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -67,9 +67,9 @@ public class HabilitacaoExameDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<HabilitacaoExame> selectAllHabilitacao_exame() {
+    public List<HabilitacaoExame> selectAll() {
         List<HabilitacaoExame> entidades = new ArrayList<>();
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_HABILITACAO_EXAME)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_ALL_HABILITACAO_EXAME)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -88,8 +88,8 @@ public class HabilitacaoExameDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean deleteHabilitacao_exame(int id) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(DELETE_HABILITACAO_EXAME_SQL)) {
+    public boolean delete(int id) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(DELETE_HABILITACAO_EXAME_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
@@ -97,8 +97,8 @@ public class HabilitacaoExameDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateHabilitacao_exame(HabilitacaoExame entidade) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(UPDATE_HABILITACAO_EXAME_SQL)) {
+    public boolean update(HabilitacaoExame entidade) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(UPDATE_HABILITACAO_EXAME_SQL)) {
             statement.setString(1, entidade.getObservacao());
             statement.setDouble(2, entidade.getCusto());
             statement.setInt(3, entidade.getLaboratorio_id());

@@ -18,7 +18,7 @@ public class ExameDAO extends ConexaoDB{
 
     public Integer count() {
         Integer count = 0;
-        try (PreparedStatement preparedStatement = prapararSQL(TOTAL)) {
+        try (PreparedStatement preparedStatement = prepararSQL(TOTAL)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -32,8 +32,8 @@ public class ExameDAO extends ConexaoDB{
         return count;
     }
 
-    public void insertExame(Exame entidade) {
-        try (PreparedStatement preparedStatement = prapararSQL(INSERT_EXAME_SQL)) {
+    public void insert(Exame entidade) {
+        try (PreparedStatement preparedStatement = prepararSQL(INSERT_EXAME_SQL)) {
             preparedStatement.setInt(1, entidade.getTipo_exame_id());
             preparedStatement.setInt(2, entidade.getMaterial_exame_id());
             preparedStatement.setString(3, entidade.getDescricao());
@@ -46,9 +46,9 @@ public class ExameDAO extends ConexaoDB{
         }
     }
 
-    public Exame selectExame(int id) {
+    public Exame select(int id) {
         Exame entidade = null;
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_EXAME_BY_ID)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_EXAME_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -67,9 +67,9 @@ public class ExameDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<Exame> selectAllExame() {
+    public List<Exame> selectAll() {
         List<Exame> entidades = new ArrayList<>();
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_EXAME)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_ALL_EXAME)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -88,8 +88,8 @@ public class ExameDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean deleteExame(int id) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(DELETE_EXAME_SQL)) {
+    public boolean delete(int id) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(DELETE_EXAME_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
@@ -97,8 +97,8 @@ public class ExameDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateExame(Exame entidade) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(UPDATE_EXAME_SQL)) {
+    public boolean update(Exame entidade) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(UPDATE_EXAME_SQL)) {
             statement.setInt(1, entidade.getTipo_exame_id());
             statement.setInt(2, entidade.getMaterial_exame_id());
             statement.setString(3, entidade.getDescricao());

@@ -20,7 +20,7 @@ public class PacienteDAO extends ConexaoDB{
 
     public Integer count() {
         Integer count = 0;
-        try (PreparedStatement preparedStatement = prapararSQL(TOTAL)) {
+        try (PreparedStatement preparedStatement = prepararSQL(TOTAL)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -34,8 +34,8 @@ public class PacienteDAO extends ConexaoDB{
         return count;
     }
 
-    public void insertPaciente(Paciente entidade) {
-        try (PreparedStatement preparedStatement = prapararSQL(INSERT_PACIENTE_SQL)) {
+    public void insert(Paciente entidade) {
+        try (PreparedStatement preparedStatement = prepararSQL(INSERT_PACIENTE_SQL)) {
             preparedStatement.setString(1, entidade.getNome());
             preparedStatement.setTimestamp(2, new Timestamp(entidade.getDt_nascimento().getTime()));
             preparedStatement.executeUpdate();
@@ -46,9 +46,9 @@ public class PacienteDAO extends ConexaoDB{
         }
     }
 
-    public Paciente selectPaciente(int id) {
+    public Paciente select(int id) {
         Paciente entidade = null;
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_PACIENTE_BY_ID)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_PACIENTE_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -65,9 +65,9 @@ public class PacienteDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<Paciente> selectAllPaciente() {
+    public List<Paciente> select() {
         List<Paciente> entidades = new ArrayList<>();
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_PACIENTE)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_ALL_PACIENTE)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -84,8 +84,8 @@ public class PacienteDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean deletePaciente(int id) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(DELETE_PACIENTE_SQL)) {
+    public boolean delete(int id) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(DELETE_PACIENTE_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
@@ -93,8 +93,8 @@ public class PacienteDAO extends ConexaoDB{
         }
     }
 
-    public boolean updatePaciente(Paciente entidade) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(UPDATE_PACIENTE_SQL)) {
+    public boolean update(Paciente entidade) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(UPDATE_PACIENTE_SQL)) {
             statement.setString(1, entidade.getNome());
             statement.setTimestamp(2, new Timestamp(entidade.getDt_nascimento().getTime()));
             statement.setInt(3, entidade.getId());

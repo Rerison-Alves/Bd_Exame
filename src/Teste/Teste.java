@@ -2,35 +2,29 @@ package Teste;
 
 import Servicos.*;
 import model.*;
-import Teste.ResetarBanco;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.lang.reflect.Field;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class Teste {
     public static void main(String[] args) {
         //Teste de inserts
         Laboratorio laboratorio = new Laboratorio(null, "laboratorio", "123456789", "123456789", "123456789", "Ana Lima");
-        new ServicoLaboratorio().insertLaboratorio(laboratorio);
+        new ServicoLaboratorio().insert(laboratorio);
 
         Contato contato = new Contato(null, "988380012", 1);
-        new ServicoContato().insertContato(contato);
+        new ServicoContato().insert(contato);
 
         Endereco endereco = new Endereco(null, "Paulo Afonso", "41", "Baixos", "Jereissati II", "61920690", "Maracanaú", 1);
-        new ServicoEndereco().insertEndereco(endereco);
+        new ServicoEndereco().insert(endereco);
 
         SiglaFormacao siglaFormacao = new SiglaFormacao(null, "Dr(a)");
-        new ServicoSiglaFormacao().insertSigla_formacao(siglaFormacao);
+        new ServicoSiglaFormacao().insert(siglaFormacao);
 
         ResponsavelTecnico responsavelTecnico = new ResponsavelTecnico(null, "Maria do Socorro", "CME", "Pediatra", 1);
-        new ServicoResponsavelTecnico().insertResponsavel_tecnico(responsavelTecnico);
+        new ServicoResponsavelTecnico().insert(responsavelTecnico);
 
         Paciente paciente = null;
         try {
@@ -38,101 +32,101 @@ public class Teste {
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
-        new ServicoPaciente().insertPaciente(paciente);
+        new ServicoPaciente().insert(paciente);
 
         Medico medico = new Medico(null, "123456789", "Alexandre de Morais");
-        new ServicoMedico().insertMedico(medico);
+        new ServicoMedico().insert(medico);
 
         Especialidade especialidade = new Especialidade(null, "Infectologia", "Doutor");
-        new ServicoEspecialidade().insertEspecialidade(especialidade);
+        new ServicoEspecialidade().insert(especialidade);
 
         MedicoHasEspecialidade medicoHasEspecialidade = new MedicoHasEspecialidade(null, 1, 1);
-        new ServicoMedicoHasEspecialidade().insertMedico_has_especialidade(medicoHasEspecialidade);
+        new ServicoMedicoHasEspecialidade().insert(medicoHasEspecialidade);
 
         ResponsavelTecnicoHasLaboratorio responsavelTecnicoHasLaboratorio = new ResponsavelTecnicoHasLaboratorio(null, 1, 1);
-        new ServicoResponsavelTecnicoHasLaboratorio().insertResponsavel_tecnico_has_laboratorio(responsavelTecnicoHasLaboratorio);
+        new ServicoResponsavelTecnicoHasLaboratorio().insert(responsavelTecnicoHasLaboratorio);
 
         ConsultaMedica consultaMedica = new ConsultaMedica(null, new Date(), 1, 1, "5056");
-        new ServicoConsultaMedica().insertConsulta_medica(consultaMedica);
+        new ServicoConsultaMedica().insert(consultaMedica);
 
         TipoExame tipoExame = new TipoExame(null, "Exame Avaliativo", "Rotina");
-        new ServicoTipoExame().insertTipo_exame(tipoExame);
+        new ServicoTipoExame().insert(tipoExame);
 
         HabilitacaoExame habilitacaoExame = new HabilitacaoExame(null, "Pendente", 130.00, 1, 1);
-        new ServicoHabilitacaoExame().insertHabilitacao_exame(habilitacaoExame);
+        new ServicoHabilitacaoExame().insert(habilitacaoExame);
 
         MaterialExame materialExame = new MaterialExame(null, "Estetoscópio", "Usado");
-        new ServicoMaterialExame().insertMaterial_exame(materialExame);
+        new ServicoMaterialExame().insert(materialExame);
 
         Exame exame = new Exame(null, 1, 1, "Exame", "Padrão");
-        new ServicoExame().insertExame(exame);
+        new ServicoExame().insert(exame);
 
         SolicitacaoExame solicitacaoExame = new SolicitacaoExame(null, "1234", new Date(), 1, 1, 1);
-        new ServicoSolicitacaoExame().insertSolicitacao_exame(solicitacaoExame);
+        new ServicoSolicitacaoExame().insert(solicitacaoExame);
 
         UnidadeMedida unidadeMedida = new UnidadeMedida(null, "mg");
-        new ServicoUnidadeMedida().insertUnidade_medida(unidadeMedida);
+        new ServicoUnidadeMedida().insert(unidadeMedida);
 
         ComposicaoExame composicaoExame = new ComposicaoExame(null, "Composto", 1);
-        new ServicoComposicaoExame().insertComposicao_exame(composicaoExame);
+        new ServicoComposicaoExame().insert(composicaoExame);
 
         ValorReferenciaComposicaoExame valorReferenciaComposicaoExame = new ValorReferenciaComposicaoExame(null, "0", "40", "10",  "50", 1);
-        new ServicoValorReferenciaComposicaoExame().insertValor_referencia_composicao_exame(valorReferenciaComposicaoExame);
+        new ServicoValorReferenciaComposicaoExame().insert(valorReferenciaComposicaoExame);
 
         Composicao composicao = new Composicao(null, 1, 1, 1);
-        new ServicoComposicao().insertComposicao(composicao);
+        new ServicoComposicao().insert(composicao);
 
         Laudo laudo = new Laudo(null, "123456789", new Date(), "123456789", 1);
-        new ServicoLaudo().insertLaudo(laudo);
+        new ServicoLaudo().insert(laudo);
 
         ResultadoExame resultadoExame = new ResultadoExame(null, new Date(), "130.00", 1 , 1);
-        new ServicoResultadoExame().insertResultado_exame(resultadoExame);
+        new ServicoResultadoExame().insert(resultadoExame);
 
         //Teste toString
         ArrayList<String> toStrings = new ArrayList<String>();
-        toStrings.add(new ServicoLaboratorio().selectLaboratorio(1).toString());
+        toStrings.add(new ServicoLaboratorio().select(1).toString());
 
-        toStrings.add(new ServicoContato().selectContato(1).toString());
+        toStrings.add(new ServicoContato().select(1).toString());
 
-        toStrings.add(new ServicoEndereco().selectEndereco(1).toString());
+        toStrings.add(new ServicoEndereco().select(1).toString());
 
-        toStrings.add(new ServicoSiglaFormacao().selectSigla_formacao(1).toString());
+        toStrings.add(new ServicoSiglaFormacao().select(1).toString());
 
-        toStrings.add(new ServicoResponsavelTecnico().selectResponsavel_tecnico(1).toString());
+        toStrings.add(new ServicoResponsavelTecnico().select(1).toString());
 
-        toStrings.add(new ServicoPaciente().selectPaciente(1).toString());
+        toStrings.add(new ServicoPaciente().select(1).toString());
 
-        toStrings.add(new ServicoMedico().selectMedico(1).toString());
+        toStrings.add(new ServicoMedico().select(1).toString());
 
-        toStrings.add(new ServicoEspecialidade().selectEspecialidade(1).toString());
+        toStrings.add(new ServicoEspecialidade().select(1).toString());
 
-        toStrings.add(new ServicoMedicoHasEspecialidade().selectMedico_has_especialidade(1).toString());
+        toStrings.add(new ServicoMedicoHasEspecialidade().select(1).toString());
 
-        toStrings.add(new ServicoResponsavelTecnicoHasLaboratorio().selectResponsavel_tecnico_has_laboratorio(1).toString());
+        toStrings.add(new ServicoResponsavelTecnicoHasLaboratorio().select(1).toString());
 
-        toStrings.add(new ServicoConsultaMedica().selectConsulta_medica(1).toString());
+        toStrings.add(new ServicoConsultaMedica().select(1).toString());
 
-        toStrings.add(new ServicoTipoExame().selectTipo_exame(1).toString());
+        toStrings.add(new ServicoTipoExame().select(1).toString());
 
-        toStrings.add(new ServicoHabilitacaoExame().selectHabilitacao_exame(1).toString());
+        toStrings.add(new ServicoHabilitacaoExame().select(1).toString());
 
-        toStrings.add(new ServicoMaterialExame().selectMaterial_exame(1).toString());
+        toStrings.add(new ServicoMaterialExame().select(1).toString());
 
-        toStrings.add(new ServicoExame().selectExame(1).toString());
+        toStrings.add(new ServicoExame().select(1).toString());
 
-        toStrings.add(new ServicoSolicitacaoExame().selectSolicitacao_exame(1).toString());
+        toStrings.add(new ServicoSolicitacaoExame().select(1).toString());
 
-        toStrings.add(new ServicoUnidadeMedida().selectUnidade_medida(1).toString());
+        toStrings.add(new ServicoUnidadeMedida().select(1).toString());
 
-        toStrings.add(new ServicoComposicaoExame().selectComposicao_exame(1).toString());
+        toStrings.add(new ServicoComposicaoExame().select(1).toString());
 
-        toStrings.add(new ServicoValorReferenciaComposicaoExame().selectValor_referencia_composicao_exame(1).toString());
+        toStrings.add(new ServicoValorReferenciaComposicaoExame().select(1).toString());
 
-        toStrings.add(new ServicoComposicao().selectComposicao(1).toString());
+        toStrings.add(new ServicoComposicao().select(1).toString());
 
-        toStrings.add(new ServicoLaudo().selectLaudo(1).toString());
+        toStrings.add(new ServicoLaudo().select(1).toString());
 
-        toStrings.add(new ServicoResultadoExame().selectResultado_exame(1).toString());
+        toStrings.add(new ServicoResultadoExame().select(1).toString());
         for(String a:toStrings){
             System.out.println(a);
         }

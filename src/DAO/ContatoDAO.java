@@ -18,7 +18,7 @@ public class ContatoDAO extends ConexaoDB{
 
     public Integer count() {
         Integer count = 0;
-        try (PreparedStatement preparedStatement = prapararSQL(TOTAL)) {
+        try (PreparedStatement preparedStatement = prepararSQL(TOTAL)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -32,8 +32,8 @@ public class ContatoDAO extends ConexaoDB{
         return count;
     }
 
-    public void insertContato(Contato entidade) {
-        try (PreparedStatement preparedStatement = prapararSQL(INSERT_CONTATO_SQL)) {
+    public void insert(Contato entidade) {
+        try (PreparedStatement preparedStatement = prepararSQL(INSERT_CONTATO_SQL)) {
             preparedStatement.setString(1, entidade.getTelefone());
             preparedStatement.setInt(2, entidade.getLaboratorio_id());
             preparedStatement.executeUpdate();
@@ -44,9 +44,9 @@ public class ContatoDAO extends ConexaoDB{
         }
     }
 
-    public Contato selectContato(int id) {
+    public Contato select(int id) {
         Contato entidade = null;
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_CONTATO_BY_ID)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_CONTATO_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -63,9 +63,9 @@ public class ContatoDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<Contato> selectAllContato() {
+    public List<Contato> selectAll() {
         List<Contato> entidades = new ArrayList<>();
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_CONTATO)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_ALL_CONTATO)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -82,8 +82,8 @@ public class ContatoDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean deleteContato(int id) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(DELETE_CONTATO_SQL)) {
+    public boolean delete(int id) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(DELETE_CONTATO_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
@@ -91,8 +91,8 @@ public class ContatoDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateContato(Contato entidade) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(UPDATE_CONTATO_SQL)) {
+    public boolean update(Contato entidade) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(UPDATE_CONTATO_SQL)) {
             statement.setString(1, entidade.getTelefone());
             statement.setInt(2, entidade.getLaboratorio_id());
             statement.setInt(3, entidade.getId());

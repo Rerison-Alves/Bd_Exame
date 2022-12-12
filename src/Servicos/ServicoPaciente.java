@@ -9,27 +9,27 @@ import java.util.List;
 public class ServicoPaciente extends PacienteDAO {
 
     @Override
-    public void insertPaciente(Paciente entidade) {
-        super.insertPaciente(entidade);
+    public void insert(Paciente entidade) {
+        super.insert(entidade);
     }
 
     @Override
-    public Paciente selectPaciente(int id) {
-        return super.selectPaciente(id);
+    public Paciente select(int id) {
+        return super.select(id);
     }
 
     @Override
-    public List<Paciente> selectAllPaciente() {
-        return super.selectAllPaciente();
+    public List<Paciente> select() {
+        return super.select();
     }
 
     @Override
-    public boolean deletePaciente(int id) throws SQLException {
-        return super.deletePaciente(id);
+    public boolean delete(int id) throws SQLException {
+        return super.delete(id);
     }
 
     @Override
-    public boolean updatePaciente(Paciente entidade) throws SQLException {
-        return super.updatePaciente(entidade);
+    public boolean update(Paciente entidade) throws SQLException {
+        return super.update(entidade);
     }
 }

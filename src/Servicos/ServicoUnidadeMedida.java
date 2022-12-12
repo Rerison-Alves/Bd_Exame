@@ -9,27 +9,27 @@ import java.util.List;
 public class ServicoUnidadeMedida extends UnidadeMedidaDAO {
 
     @Override
-    public void insertUnidade_medida(UnidadeMedida entidade) {
-        super.insertUnidade_medida(entidade);
+    public void insert(UnidadeMedida entidade) {
+        super.insert(entidade);
     }
 
     @Override
-    public UnidadeMedida selectUnidade_medida(int id) {
-        return super.selectUnidade_medida(id);
+    public UnidadeMedida select(int id) {
+        return super.select(id);
     }
 
     @Override
-    public List<UnidadeMedida> selectAllUnidade_medida() {
-        return super.selectAllUnidade_medida();
+    public List<UnidadeMedida> selectAll() {
+        return super.selectAll();
     }
 
     @Override
-    public boolean deleteUnidade_medida(int id) throws SQLException {
-        return super.deleteUnidade_medida(id);
+    public boolean delete(int id) throws SQLException {
+        return super.delete(id);
     }
 
     @Override
-    public boolean updateUnidade_medida(UnidadeMedida entidade) throws SQLException {
-        return super.updateUnidade_medida(entidade);
+    public boolean update(UnidadeMedida entidade) throws SQLException {
+        return super.update(entidade);
     }
 }

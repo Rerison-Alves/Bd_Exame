@@ -9,27 +9,27 @@ import java.util.List;
 public class ServicoComposicao extends ComposicaoDAO {
 
     @Override
-    public void insertComposicao(Composicao entidade) {
-        super.insertComposicao(entidade);
+    public void insert(Composicao entidade) {
+        super.insert(entidade);
     }
 
     @Override
-    public Composicao selectComposicao(int id) {
-        return super.selectComposicao(id);
+    public Composicao select(int id) {
+        return super.select(id);
     }
 
     @Override
-    public List<Composicao> selectAllComposicao() {
-        return super.selectAllComposicao();
+    public List<Composicao> selectAll() {
+        return super.selectAll();
     }
 
     @Override
-    public boolean deleteComposicao(int id) throws SQLException {
-        return super.deleteComposicao(id);
+    public boolean delete(int id) throws SQLException {
+        return super.delete(id);
     }
 
     @Override
-    public boolean updateComposicao(Composicao entidade) throws SQLException {
-        return super.updateComposicao(entidade);
+    public boolean update(Composicao entidade) throws SQLException {
+        return super.update(entidade);
     }
 }

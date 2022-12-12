@@ -9,27 +9,27 @@ import java.util.List;
 public class ServicoSiglaFormacao extends SiglaFormacaoDAO {
 
     @Override
-    public void insertSigla_formacao(SiglaFormacao entidade) {
-        super.insertSigla_formacao(entidade);
+    public void insert(SiglaFormacao entidade) {
+        super.insert(entidade);
     }
 
     @Override
-    public SiglaFormacao selectSigla_formacao(int id) {
-        return super.selectSigla_formacao(id);
+    public SiglaFormacao select(int id) {
+        return super.select(id);
     }
 
     @Override
-    public List<SiglaFormacao> selectAllSigla_formacao() {
-        return super.selectAllSigla_formacao();
+    public List<SiglaFormacao> selectAll() {
+        return super.selectAll();
     }
 
     @Override
-    public boolean deleteSigla_formacao(int id) throws SQLException {
-        return super.deleteSigla_formacao(id);
+    public boolean delete(int id) throws SQLException {
+        return super.delete(id);
     }
 
     @Override
-    public boolean updateSigla_formacao(SiglaFormacao entidade) throws SQLException {
-        return super.updateSigla_formacao(entidade);
+    public boolean update(SiglaFormacao entidade) throws SQLException {
+        return super.update(entidade);
     }
 }

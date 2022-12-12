@@ -9,27 +9,27 @@ import java.util.List;
 public class ServicoHabilitacaoExame extends HabilitacaoExameDAO {
 
     @Override
-    public void insertHabilitacao_exame(HabilitacaoExame entidade) {
-        super.insertHabilitacao_exame(entidade);
+    public void insert(HabilitacaoExame entidade) {
+        super.insert(entidade);
     }
 
     @Override
-    public HabilitacaoExame selectHabilitacao_exame(int id) {
-        return super.selectHabilitacao_exame(id);
+    public HabilitacaoExame select(int id) {
+        return super.select(id);
     }
 
     @Override
-    public List<HabilitacaoExame> selectAllHabilitacao_exame() {
-        return super.selectAllHabilitacao_exame();
+    public List<HabilitacaoExame> selectAll() {
+        return super.selectAll();
     }
 
     @Override
-    public boolean deleteHabilitacao_exame(int id) throws SQLException {
-        return super.deleteHabilitacao_exame(id);
+    public boolean delete(int id) throws SQLException {
+        return super.delete(id);
     }
 
     @Override
-    public boolean updateHabilitacao_exame(HabilitacaoExame entidade) throws SQLException {
-        return super.updateHabilitacao_exame(entidade);
+    public boolean update(HabilitacaoExame entidade) throws SQLException {
+        return super.update(entidade);
     }
 }

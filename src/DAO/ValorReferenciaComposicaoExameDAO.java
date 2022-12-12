@@ -18,7 +18,7 @@ public class ValorReferenciaComposicaoExameDAO extends ConexaoDB{
 
     public Integer count() {
         Integer count = 0;
-        try (PreparedStatement preparedStatement = prapararSQL(TOTAL)) {
+        try (PreparedStatement preparedStatement = prepararSQL(TOTAL)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -32,8 +32,8 @@ public class ValorReferenciaComposicaoExameDAO extends ConexaoDB{
         return count;
     }
 
-    public void insertValor_referencia_composicao_exame(ValorReferenciaComposicaoExame entidade) {
-        try (PreparedStatement preparedStatement = prapararSQL(INSERT_VALOR_REFERENCIA_COMPOSICAO_EXAME_SQL)) {
+    public void insert(ValorReferenciaComposicaoExame entidade) {
+        try (PreparedStatement preparedStatement = prepararSQL(INSERT_VALOR_REFERENCIA_COMPOSICAO_EXAME_SQL)) {
             preparedStatement.setString(1, entidade.getValor_minimo());
             preparedStatement.setString(2, entidade.getValor_maximo());
             preparedStatement.setString(3, entidade.getLimitador_minimo());
@@ -47,9 +47,9 @@ public class ValorReferenciaComposicaoExameDAO extends ConexaoDB{
         }
     }
 
-    public ValorReferenciaComposicaoExame selectValor_referencia_composicao_exame(int id) {
+    public ValorReferenciaComposicaoExame select(int id) {
         ValorReferenciaComposicaoExame entidade = null;
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_VALOR_REFERENCIA_COMPOSICAO_EXAME_BY_ID)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_VALOR_REFERENCIA_COMPOSICAO_EXAME_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -69,9 +69,9 @@ public class ValorReferenciaComposicaoExameDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<ValorReferenciaComposicaoExame> selectAllValor_referencia_composicao_exame() {
+    public List<ValorReferenciaComposicaoExame> selectAll() {
         List<ValorReferenciaComposicaoExame> entidades = new ArrayList<>();
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_VALOR_REFERENCIA_COMPOSICAO_EXAME)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_ALL_VALOR_REFERENCIA_COMPOSICAO_EXAME)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -91,8 +91,8 @@ public class ValorReferenciaComposicaoExameDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean deleteValor_referencia_composicao_exame(int id) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(DELETE_VALOR_REFERENCIA_COMPOSICAO_EXAME_SQL)) {
+    public boolean delete(int id) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(DELETE_VALOR_REFERENCIA_COMPOSICAO_EXAME_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
@@ -100,8 +100,8 @@ public class ValorReferenciaComposicaoExameDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateValor_referencia_composicao_exame(ValorReferenciaComposicaoExame entidade) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(UPDATE_VALOR_REFERENCIA_COMPOSICAO_EXAME_SQL)) {
+    public boolean update(ValorReferenciaComposicaoExame entidade) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(UPDATE_VALOR_REFERENCIA_COMPOSICAO_EXAME_SQL)) {
             statement.setString(1, entidade.getValor_minimo());
             statement.setString(2, entidade.getValor_maximo());
             statement.setString(3, entidade.getLimitador_minimo());

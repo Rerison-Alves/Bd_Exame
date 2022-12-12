@@ -18,7 +18,7 @@ public class ResponsavelTecnicoDAO extends ConexaoDB{
 
     public Integer count() {
         Integer count = 0;
-        try (PreparedStatement preparedStatement = prapararSQL(TOTAL)) {
+        try (PreparedStatement preparedStatement = prepararSQL(TOTAL)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -32,8 +32,8 @@ public class ResponsavelTecnicoDAO extends ConexaoDB{
         return count;
     }
 
-    public void insertResponsavel_tecnico(ResponsavelTecnico entidade) {
-        try (PreparedStatement preparedStatement = prapararSQL(INSERT_RESPONSAVEL_TECNICO_SQL)) {
+    public void insert(ResponsavelTecnico entidade) {
+        try (PreparedStatement preparedStatement = prepararSQL(INSERT_RESPONSAVEL_TECNICO_SQL)) {
             preparedStatement.setString(1, entidade.getNome());
             preparedStatement.setString(2, entidade.getConselho());
             preparedStatement.setString(3, entidade.getFormacao());
@@ -46,9 +46,9 @@ public class ResponsavelTecnicoDAO extends ConexaoDB{
         }
     }
 
-    public ResponsavelTecnico selectResponsavel_tecnico(int id) {
+    public ResponsavelTecnico select(int id) {
         ResponsavelTecnico entidade = null;
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_RESPONSAVEL_TECNICO_BY_ID)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_RESPONSAVEL_TECNICO_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -67,9 +67,9 @@ public class ResponsavelTecnicoDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<ResponsavelTecnico> selectAllResponsavel_tecnico() {
+    public List<ResponsavelTecnico> selectAll() {
         List<ResponsavelTecnico> entidades = new ArrayList<>();
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_RESPONSAVEL_TECNICO)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_ALL_RESPONSAVEL_TECNICO)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -88,8 +88,8 @@ public class ResponsavelTecnicoDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean deleteResponsavel_tecnico(int id) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(DELETE_RESPONSAVEL_TECNICO_SQL)) {
+    public boolean delete(int id) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(DELETE_RESPONSAVEL_TECNICO_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
@@ -97,8 +97,8 @@ public class ResponsavelTecnicoDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateResponsavel_tecnico(ResponsavelTecnico entidade) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(UPDATE_RESPONSAVEL_TECNICO_SQL)) {
+    public boolean update(ResponsavelTecnico entidade) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(UPDATE_RESPONSAVEL_TECNICO_SQL)) {
             statement.setString(1, entidade.getNome());
             statement.setString(2, entidade.getConselho());
             statement.setString(3, entidade.getFormacao());

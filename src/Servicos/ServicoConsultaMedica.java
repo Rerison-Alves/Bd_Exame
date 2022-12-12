@@ -9,27 +9,27 @@ import java.util.List;
 public class ServicoConsultaMedica extends ConsultaMedicaDAO {
 
     @Override
-    public void insertConsulta_medica(ConsultaMedica entidade) {
-        super.insertConsulta_medica(entidade);
+    public void insert(ConsultaMedica entidade) {
+        super.insert(entidade);
     }
 
     @Override
-    public ConsultaMedica selectConsulta_medica(int id) {
-        return super.selectConsulta_medica(id);
+    public ConsultaMedica select(int id) {
+        return super.select(id);
     }
 
     @Override
-    public List<ConsultaMedica> selectAllConsulta_medica() {
-        return super.selectAllConsulta_medica();
+    public List<ConsultaMedica> selectAll() {
+        return super.selectAll();
     }
 
     @Override
-    public boolean deleteConsulta_medica(int id) throws SQLException {
-        return super.deleteConsulta_medica(id);
+    public boolean delete(int id) throws SQLException {
+        return super.delete(id);
     }
 
     @Override
-    public boolean updateConsulta_medica(ConsultaMedica entidade) throws SQLException {
-        return super.updateConsulta_medica(entidade);
+    public boolean update(ConsultaMedica entidade) throws SQLException {
+        return super.update(entidade);
     }
 }

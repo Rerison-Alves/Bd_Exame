@@ -9,27 +9,27 @@ import java.util.List;
 public class ServicoLaboratorio extends LaboratorioDAO {
 
     @Override
-    public void insertLaboratorio(Laboratorio entidade) {
-        super.insertLaboratorio(entidade);
+    public void insert(Laboratorio entidade) {
+        super.insert(entidade);
     }
 
     @Override
-    public Laboratorio selectLaboratorio(int id) {
-        return super.selectLaboratorio(id);
+    public Laboratorio select(int id) {
+        return super.select(id);
     }
 
     @Override
-    public List<Laboratorio> selectAllLaboratorio() {
-        return super.selectAllLaboratorio();
+    public List<Laboratorio> selectAll() {
+        return super.selectAll();
     }
 
     @Override
-    public boolean deleteLaboratorio(int id) throws SQLException {
-        return super.deleteLaboratorio(id);
+    public boolean delete(int id) throws SQLException {
+        return super.delete(id);
     }
 
     @Override
-    public boolean updateLaboratorio(Laboratorio entidade) throws SQLException {
-        return super.updateLaboratorio(entidade);
+    public boolean update(Laboratorio entidade) throws SQLException {
+        return super.update(entidade);
     }
 }

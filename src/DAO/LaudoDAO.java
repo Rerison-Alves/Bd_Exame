@@ -16,7 +16,7 @@ public class LaudoDAO extends ConexaoDB{
 
     public Integer count() {
         Integer count = 0;
-        try (PreparedStatement preparedStatement = prapararSQL(TOTAL)) {
+        try (PreparedStatement preparedStatement = prepararSQL(TOTAL)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -30,8 +30,8 @@ public class LaudoDAO extends ConexaoDB{
         return count;
     }
 
-    public void insertLaudo(Laudo entidade) {
-        try (PreparedStatement preparedStatement = prapararSQL(INSERT_LAUDO_SQL)) {
+    public void insert(Laudo entidade) {
+        try (PreparedStatement preparedStatement = prepararSQL(INSERT_LAUDO_SQL)) {
             preparedStatement.setString(1, entidade.getAssinatura_digital());
             preparedStatement.setTimestamp(2, new Timestamp(entidade.getDt_resultado().getTime()));
             preparedStatement.setString(3, entidade.getCodigo());
@@ -44,9 +44,9 @@ public class LaudoDAO extends ConexaoDB{
         }
     }
 
-    public Laudo selectLaudo(int id) {
+    public Laudo select(int id) {
         Laudo entidade = null;
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_LAUDO_BY_ID)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_LAUDO_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -65,9 +65,9 @@ public class LaudoDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<Laudo> selectAllLaudo() {
+    public List<Laudo> selectAll() {
         List<Laudo> entidades = new ArrayList<>();
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_LAUDO)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_ALL_LAUDO)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -86,8 +86,8 @@ public class LaudoDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean deleteLaudo(int id) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(DELETE_LAUDO_SQL)) {
+    public boolean delete(int id) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(DELETE_LAUDO_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
@@ -95,8 +95,8 @@ public class LaudoDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateLaudo(Laudo entidade) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(UPDATE_LAUDO_SQL)) {
+    public boolean update(Laudo entidade) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(UPDATE_LAUDO_SQL)) {
             statement.setString(1, entidade.getAssinatura_digital());
             statement.setTimestamp(2, new Timestamp(entidade.getDt_resultado().getTime()));
             statement.setString(3, entidade.getCodigo());

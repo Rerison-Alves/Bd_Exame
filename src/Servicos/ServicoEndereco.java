@@ -9,27 +9,27 @@ import java.util.List;
 public class ServicoEndereco extends EnderecoDAO {
 
     @Override
-    public void insertEndereco(Endereco entidade) {
-        super.insertEndereco(entidade);
+    public void insert(Endereco entidade) {
+        super.insert(entidade);
     }
 
     @Override
-    public Endereco selectEndereco(int id) {
-        return super.selectEndereco(id);
+    public Endereco select(int id) {
+        return super.select(id);
     }
 
     @Override
-    public List<Endereco> selectAllEndereco() {
-        return super.selectAllEndereco();
+    public List<Endereco> selectAll() {
+        return super.selectAll();
     }
 
     @Override
-    public boolean deleteEndereco(int id) throws SQLException {
-        return super.deleteEndereco(id);
+    public boolean delete(int id) throws SQLException {
+        return super.delete(id);
     }
 
     @Override
-    public boolean updateEndereco(Endereco entidade) throws SQLException {
-        return super.updateEndereco(entidade);
+    public boolean update(Endereco entidade) throws SQLException {
+        return super.update(entidade);
     }
 }

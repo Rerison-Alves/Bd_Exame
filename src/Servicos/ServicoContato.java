@@ -9,27 +9,27 @@ import java.util.List;
 public class ServicoContato extends ContatoDAO {
 
     @Override
-    public void insertContato(Contato entidade) {
-        super.insertContato(entidade);
+    public void insert(Contato entidade) {
+        super.insert(entidade);
     }
 
     @Override
-    public Contato selectContato(int id) {
-        return super.selectContato(id);
+    public Contato select(int id) {
+        return super.select(id);
     }
 
     @Override
-    public List<Contato> selectAllContato() {
-        return super.selectAllContato();
+    public List<Contato> selectAll() {
+        return super.selectAll();
     }
 
     @Override
-    public boolean deleteContato(int id) throws SQLException {
-        return super.deleteContato(id);
+    public boolean delete(int id) throws SQLException {
+        return super.delete(id);
     }
 
     @Override
-    public boolean updateContato(Contato entidade) throws SQLException {
-        return super.updateContato(entidade);
+    public boolean update(Contato entidade) throws SQLException {
+        return super.update(entidade);
     }
 }

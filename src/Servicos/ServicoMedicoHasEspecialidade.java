@@ -9,27 +9,27 @@ import java.util.List;
 public class ServicoMedicoHasEspecialidade extends MedicoHasEspecialidadeDAO {
 
     @Override
-    public void insertMedico_has_especialidade(MedicoHasEspecialidade entidade) {
-        super.insertMedico_has_especialidade(entidade);
+    public void insert(MedicoHasEspecialidade entidade) {
+        super.insert(entidade);
     }
 
     @Override
-    public MedicoHasEspecialidade selectMedico_has_especialidade(int id) {
-        return super.selectMedico_has_especialidade(id);
+    public MedicoHasEspecialidade select(int id) {
+        return super.select(id);
     }
 
     @Override
-    public List<MedicoHasEspecialidade> selectAllMedico_has_especialidade() {
-        return super.selectAllMedico_has_especialidade();
+    public List<MedicoHasEspecialidade> selectAll() {
+        return super.selectAll();
     }
 
     @Override
-    public boolean deleteMedico_has_especialidade(int id) throws SQLException {
-        return super.deleteMedico_has_especialidade(id);
+    public boolean delete(int id) throws SQLException {
+        return super.delete(id);
     }
 
     @Override
-    public boolean updateMedico_has_especialidade(MedicoHasEspecialidade entidade) throws SQLException {
-        return super.updateMedico_has_especialidade(entidade);
+    public boolean update(MedicoHasEspecialidade entidade) throws SQLException {
+        return super.update(entidade);
     }
 }

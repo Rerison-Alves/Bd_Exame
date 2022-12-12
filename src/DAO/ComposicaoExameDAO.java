@@ -19,7 +19,7 @@ public class ComposicaoExameDAO extends ConexaoDB{
 
     public Integer count() {
         Integer count = 0;
-        try (PreparedStatement preparedStatement = prapararSQL(TOTAL)) {
+        try (PreparedStatement preparedStatement = prepararSQL(TOTAL)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -33,8 +33,8 @@ public class ComposicaoExameDAO extends ConexaoDB{
         return count;
     }
 
-    public void insertComposicao_exame(ComposicaoExame entidade) {
-        try (PreparedStatement preparedStatement = prapararSQL(INSERT_COMPOSICAO_EXAME_SQL)) {
+    public void insert(ComposicaoExame entidade) {
+        try (PreparedStatement preparedStatement = prepararSQL(INSERT_COMPOSICAO_EXAME_SQL)) {
             preparedStatement.setString(1, entidade.getDescricao());
             preparedStatement.setInt(2, entidade.getUnidade_medida_id());
             preparedStatement.executeUpdate();
@@ -45,9 +45,9 @@ public class ComposicaoExameDAO extends ConexaoDB{
         }
     }
 
-    public ComposicaoExame selectComposicao_exame(int id) {
+    public ComposicaoExame select(int id) {
         ComposicaoExame entidade = null;
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_COMPOSICAO_EXAME_BY_ID)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_COMPOSICAO_EXAME_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -64,9 +64,9 @@ public class ComposicaoExameDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<ComposicaoExame> selectAllComposicao_exame() {
+    public List<ComposicaoExame> selectAll() {
         List<ComposicaoExame> entidades = new ArrayList<>();
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_COMPOSICAO_EXAME)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_ALL_COMPOSICAO_EXAME)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -83,8 +83,8 @@ public class ComposicaoExameDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean deleteComposicao_exame(int id) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(DELETE_COMPOSICAO_EXAME_SQL)) {
+    public boolean delete(int id) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(DELETE_COMPOSICAO_EXAME_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
@@ -92,8 +92,8 @@ public class ComposicaoExameDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateComposicao_exame(ComposicaoExame entidade) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(UPDATE_COMPOSICAO_EXAME_SQL)) {
+    public boolean update(ComposicaoExame entidade) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(UPDATE_COMPOSICAO_EXAME_SQL)) {
             statement.setString(1, entidade.getDescricao());
             statement.setInt(2, entidade.getUnidade_medida_id());
             statement.setInt(3, entidade.getId());

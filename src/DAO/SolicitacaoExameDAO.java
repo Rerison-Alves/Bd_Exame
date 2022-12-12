@@ -19,7 +19,7 @@ public class SolicitacaoExameDAO extends ConexaoDB{
 
     public Integer count() {
         Integer count = 0;
-        try (PreparedStatement preparedStatement = prapararSQL(TOTAL)) {
+        try (PreparedStatement preparedStatement = prepararSQL(TOTAL)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -33,8 +33,8 @@ public class SolicitacaoExameDAO extends ConexaoDB{
         return count;
     }
 
-    public void insertSolicitacao_exame(SolicitacaoExame entidade) {
-        try (PreparedStatement preparedStatement = prapararSQL(INSERT_SOLICITACAO_EXAME_SQL)) {
+    public void insert(SolicitacaoExame entidade) {
+        try (PreparedStatement preparedStatement = prepararSQL(INSERT_SOLICITACAO_EXAME_SQL)) {
             preparedStatement.setString(1, entidade.getNm_prescrito());
             preparedStatement.setTimestamp(2, new Timestamp(entidade.getDt_solicitacao().getTime()));
             preparedStatement.setInt(3, entidade.getConsulta_medica_id());
@@ -48,9 +48,9 @@ public class SolicitacaoExameDAO extends ConexaoDB{
         }
     }
 
-    public SolicitacaoExame selectSolicitacao_exame(int id) {
+    public SolicitacaoExame select(int id) {
         SolicitacaoExame entidade = null;
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_SOLICITACAO_EXAME_BY_ID)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_SOLICITACAO_EXAME_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -70,9 +70,9 @@ public class SolicitacaoExameDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<SolicitacaoExame> selectAllSolicitacao_exame() {
+    public List<SolicitacaoExame> selectAll() {
         List<SolicitacaoExame> entidades = new ArrayList<>();
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_SOLICITACAO_EXAME)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_ALL_SOLICITACAO_EXAME)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -92,8 +92,8 @@ public class SolicitacaoExameDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean deleteSolicitacao_exame(int id) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(DELETE_SOLICITACAO_EXAME_SQL)) {
+    public boolean delete(int id) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(DELETE_SOLICITACAO_EXAME_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
@@ -101,8 +101,8 @@ public class SolicitacaoExameDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateSolicitacao_exame(SolicitacaoExame entidade) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(UPDATE_SOLICITACAO_EXAME_SQL)) {
+    public boolean update(SolicitacaoExame entidade) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(UPDATE_SOLICITACAO_EXAME_SQL)) {
             statement.setString(1, entidade.getNm_prescrito());
             statement.setTimestamp(2, new Timestamp(entidade.getDt_solicitacao().getTime()));
             statement.setInt(3, entidade.getConsulta_medica_id());

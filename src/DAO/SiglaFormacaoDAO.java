@@ -18,7 +18,7 @@ public class SiglaFormacaoDAO extends ConexaoDB{
 
     public Integer count() {
         Integer count = 0;
-        try (PreparedStatement preparedStatement = prapararSQL(TOTAL)) {
+        try (PreparedStatement preparedStatement = prepararSQL(TOTAL)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -32,8 +32,8 @@ public class SiglaFormacaoDAO extends ConexaoDB{
         return count;
     }
 
-    public void insertSigla_formacao(SiglaFormacao entidade) {
-        try (PreparedStatement preparedStatement = prapararSQL(INSERT_SIGLA_FORMACAO_SQL)) {
+    public void insert(SiglaFormacao entidade) {
+        try (PreparedStatement preparedStatement = prepararSQL(INSERT_SIGLA_FORMACAO_SQL)) {
             preparedStatement.setString(1, entidade.getSigla());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -43,9 +43,9 @@ public class SiglaFormacaoDAO extends ConexaoDB{
         }
     }
 
-    public SiglaFormacao selectSigla_formacao(int id) {
+    public SiglaFormacao select(int id) {
         SiglaFormacao entidade = null;
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_SIGLA_FORMACAO_BY_ID)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_SIGLA_FORMACAO_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -61,9 +61,9 @@ public class SiglaFormacaoDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<SiglaFormacao> selectAllSigla_formacao() {
+    public List<SiglaFormacao> selectAll() {
         List<SiglaFormacao> entidades = new ArrayList<>();
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_SIGLA_FORMACAO)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_ALL_SIGLA_FORMACAO)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -79,8 +79,8 @@ public class SiglaFormacaoDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean deleteSigla_formacao(int id) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(DELETE_SIGLA_FORMACAO_SQL)) {
+    public boolean delete(int id) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(DELETE_SIGLA_FORMACAO_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
@@ -88,8 +88,8 @@ public class SiglaFormacaoDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateSigla_formacao(SiglaFormacao entidade) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(UPDATE_SIGLA_FORMACAO_SQL)) {
+    public boolean update(SiglaFormacao entidade) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(UPDATE_SIGLA_FORMACAO_SQL)) {
             statement.setString(1, entidade.getSigla());
             statement.setInt(2, entidade.getId());
 

@@ -9,27 +9,27 @@ import java.util.List;
 public class ServicoResponsavelTecnicoHasLaboratorio extends ResponsavelTecnicoHasLaboratorioDAO {
 
     @Override
-    public void insertResponsavel_tecnico_has_laboratorio(ResponsavelTecnicoHasLaboratorio entidade) {
-        super.insertResponsavel_tecnico_has_laboratorio(entidade);
+    public void insert(ResponsavelTecnicoHasLaboratorio entidade) {
+        super.insert(entidade);
     }
 
     @Override
-    public ResponsavelTecnicoHasLaboratorio selectResponsavel_tecnico_has_laboratorio(int id) {
-        return super.selectResponsavel_tecnico_has_laboratorio(id);
+    public ResponsavelTecnicoHasLaboratorio select(int id) {
+        return super.select(id);
     }
 
     @Override
-    public List<ResponsavelTecnicoHasLaboratorio> selectAllResponsavel_tecnico_has_laboratorio() {
-        return super.selectAllResponsavel_tecnico_has_laboratorio();
+    public List<ResponsavelTecnicoHasLaboratorio> selectAll() {
+        return super.selectAll();
     }
 
     @Override
-    public boolean deleteResponsavel_tecnico_has_laboratorio(int id) throws SQLException {
-        return super.deleteResponsavel_tecnico_has_laboratorio(id);
+    public boolean delete(int id) throws SQLException {
+        return super.delete(id);
     }
 
     @Override
-    public boolean updateResponsavel_tecnico_has_laboratorio(ResponsavelTecnicoHasLaboratorio entidade) throws SQLException {
-        return super.updateResponsavel_tecnico_has_laboratorio(entidade);
+    public boolean update(ResponsavelTecnicoHasLaboratorio entidade) throws SQLException {
+        return super.update(entidade);
     }
 }

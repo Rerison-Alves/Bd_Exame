@@ -18,7 +18,7 @@ public class UnidadeMedidaDAO extends ConexaoDB{
 
     public Integer count() {
         Integer count = 0;
-        try (PreparedStatement preparedStatement = prapararSQL(TOTAL)) {
+        try (PreparedStatement preparedStatement = prepararSQL(TOTAL)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -32,8 +32,8 @@ public class UnidadeMedidaDAO extends ConexaoDB{
         return count;
     }
 
-    public void insertUnidade_medida(UnidadeMedida entidade) {
-        try (PreparedStatement preparedStatement = prapararSQL(INSERT_UNIDADE_MEDIDA_SQL)) {
+    public void insert(UnidadeMedida entidade) {
+        try (PreparedStatement preparedStatement = prepararSQL(INSERT_UNIDADE_MEDIDA_SQL)) {
             preparedStatement.setString(1, entidade.getDescricao());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -43,9 +43,9 @@ public class UnidadeMedidaDAO extends ConexaoDB{
         }
     }
 
-    public UnidadeMedida selectUnidade_medida(int id) {
+    public UnidadeMedida select(int id) {
         UnidadeMedida entidade = null;
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_UNIDADE_MEDIDA_BY_ID)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_UNIDADE_MEDIDA_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -61,9 +61,9 @@ public class UnidadeMedidaDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<UnidadeMedida> selectAllUnidade_medida() {
+    public List<UnidadeMedida> selectAll() {
         List<UnidadeMedida> entidades = new ArrayList<>();
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_UNIDADE_MEDIDA)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_ALL_UNIDADE_MEDIDA)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -79,8 +79,8 @@ public class UnidadeMedidaDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean deleteUnidade_medida(int id) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(DELETE_UNIDADE_MEDIDA_SQL)) {
+    public boolean delete(int id) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(DELETE_UNIDADE_MEDIDA_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
@@ -88,8 +88,8 @@ public class UnidadeMedidaDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateUnidade_medida(UnidadeMedida entidade) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(UPDATE_UNIDADE_MEDIDA_SQL)) {
+    public boolean update(UnidadeMedida entidade) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(UPDATE_UNIDADE_MEDIDA_SQL)) {
             statement.setString(1, entidade.getDescricao());
             statement.setInt(2, entidade.getId());
 

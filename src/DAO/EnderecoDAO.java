@@ -18,7 +18,7 @@ public class EnderecoDAO extends ConexaoDB{
 
     public Integer count() {
         Integer count = 0;
-        try (PreparedStatement preparedStatement = prapararSQL(TOTAL)) {
+        try (PreparedStatement preparedStatement = prepararSQL(TOTAL)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -32,8 +32,8 @@ public class EnderecoDAO extends ConexaoDB{
         return count;
     }
 
-    public void insertEndereco(Endereco entidade) {
-        try (PreparedStatement preparedStatement = prapararSQL(INSERT_ENDERECO_SQL)) {
+    public void insert(Endereco entidade) {
+        try (PreparedStatement preparedStatement = prepararSQL(INSERT_ENDERECO_SQL)) {
             preparedStatement.setString(1, entidade.getRua());
             preparedStatement.setString(2, entidade.getNumero());
             preparedStatement.setString(3, entidade.getComplemento());
@@ -49,9 +49,9 @@ public class EnderecoDAO extends ConexaoDB{
         }
     }
 
-    public Endereco selectEndereco(int id) {
+    public Endereco select(int id) {
         Endereco entidade = null;
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ENDERECO_BY_ID)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_ENDERECO_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -73,9 +73,9 @@ public class EnderecoDAO extends ConexaoDB{
         return entidade;
     }
 
-    public List<Endereco> selectAllEndereco() {
+    public List<Endereco> selectAll() {
         List<Endereco> entidades = new ArrayList<>();
-        try (PreparedStatement preparedStatement = prapararSQL(SELECT_ALL_ENDERECO)) {
+        try (PreparedStatement preparedStatement = prepararSQL(SELECT_ALL_ENDERECO)) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -97,8 +97,8 @@ public class EnderecoDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean deleteEndereco(int id) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(DELETE_ENDERECO_SQL)) {
+    public boolean delete(int id) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(DELETE_ENDERECO_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
@@ -106,8 +106,8 @@ public class EnderecoDAO extends ConexaoDB{
         }
     }
 
-    public boolean updateEndereco(Endereco entidade) throws SQLException {
-        try (PreparedStatement statement = prapararSQL(UPDATE_ENDERECO_SQL)) {
+    public boolean update(Endereco entidade) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(UPDATE_ENDERECO_SQL)) {
             statement.setString(1, entidade.getRua());
             statement.setString(2, entidade.getNumero());
             statement.setString(3, entidade.getComplemento());
