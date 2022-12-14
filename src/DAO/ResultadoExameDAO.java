@@ -33,18 +33,25 @@ public class ResultadoExameDAO extends ConexaoDB{
         return count;
     }
 
-    public void insert(ResultadoExame entidade) {
+    public ResultadoExame insert(ResultadoExame entidade) {
         try (PreparedStatement preparedStatement = prepararSQL(INSERT_RESULTADO_EXAME_SQL)) {
             preparedStatement.setTimestamp(1, new Timestamp(entidade.getDt_exame().getTime()));
             preparedStatement.setString(2, entidade.getValor());
             preparedStatement.setInt(3, entidade.getComposicao_id());
             preparedStatement.setInt(4, entidade.getLaudo_id());
             preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()){
+                entidade.setId(resultSet.getInt(1));
+            }
+            preparedStatement.getConnection().close();
+            return entidade;
         } catch (SQLException e) {
             printSQLException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
 
     public ResultadoExame select(int id) {

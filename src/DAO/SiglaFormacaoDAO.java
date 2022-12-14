@@ -32,15 +32,22 @@ public class SiglaFormacaoDAO extends ConexaoDB{
         return count;
     }
 
-    public void insert(SiglaFormacao entidade) {
+    public SiglaFormacao insert(SiglaFormacao entidade) {
         try (PreparedStatement preparedStatement = prepararSQL(INSERT_SIGLA_FORMACAO_SQL)) {
             preparedStatement.setString(1, entidade.getSigla());
             preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()){
+                entidade.setId(resultSet.getInt(1));
+            }
+            preparedStatement.getConnection().close();
+            return entidade;
         } catch (SQLException e) {
             printSQLException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
 
     public SiglaFormacao select(int id) {

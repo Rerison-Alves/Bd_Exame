@@ -36,7 +36,11 @@ public class MedicoDAO extends ConexaoDB{
         try (PreparedStatement preparedStatement = prepararSQL(INSERT_MEDICO_SQL)) {
             preparedStatement.setString(1, entidade.getCrm());
             preparedStatement.setString(2, entidade.getNome());
-            entidade.setId(preparedStatement.executeUpdate());
+            preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()){
+                entidade.setId(resultSet.getInt(1));
+            }
             preparedStatement.getConnection().close();
             return entidade;
         } catch (SQLException e) {
@@ -95,15 +99,14 @@ public class MedicoDAO extends ConexaoDB{
         }
     }
 
-    public boolean update(Medico entidade) throws SQLException {
+    public void update(Medico entidade) throws SQLException {
         try (PreparedStatement statement = prepararSQL(UPDATE_MEDICO_SQL)) {
             statement.setString(1, entidade.getCrm());
             statement.setString(2, entidade.getNome());
             statement.setInt(3, entidade.getId());
-
-            boolean bool = statement.executeUpdate() > 0;
+            statement.executeUpdate();
             statement.getConnection().close();
-            return bool;
+
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }

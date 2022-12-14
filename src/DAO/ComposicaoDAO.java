@@ -33,17 +33,24 @@ public class ComposicaoDAO extends ConexaoDB{
         return count;
     }
 
-    public void insert(Composicao entidade) {
+    public Composicao insert(Composicao entidade) {
         try (PreparedStatement preparedStatement = prepararSQL(INSERT_COMPOSICAO_SQL)) {
             preparedStatement.setInt(1, entidade.getExame_id());
             preparedStatement.setInt(2, entidade.getComposicao_exame_id());
             preparedStatement.setInt(3, entidade.getValor_referencia_composicao_exame_id());
             preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()){
+                entidade.setId(resultSet.getInt(1));
+            }
+            preparedStatement.getConnection().close();
+            return entidade;
         } catch (SQLException e) {
             printSQLException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
 
     public Composicao select(int id) {

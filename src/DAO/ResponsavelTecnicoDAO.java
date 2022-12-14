@@ -38,7 +38,11 @@ public class ResponsavelTecnicoDAO extends ConexaoDB{
             preparedStatement.setString(2, entidade.getConselho());
             preparedStatement.setString(3, entidade.getFormacao());
             preparedStatement.setInt(4, entidade.getSigla_formacao_id());
-            entidade.setId(preparedStatement.executeUpdate());
+            preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()){
+                entidade.setId(resultSet.getInt(1));
+            }
             preparedStatement.getConnection().close();
             return entidade;
         } catch (SQLException e) {

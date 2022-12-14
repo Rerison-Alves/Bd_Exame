@@ -32,7 +32,7 @@ public class EnderecoDAO extends ConexaoDB{
         return count;
     }
 
-    public void insert(Endereco entidade) {
+    public Endereco insert(Endereco entidade) {
         try (PreparedStatement preparedStatement = prepararSQL(INSERT_ENDERECO_SQL)) {
             preparedStatement.setString(1, entidade.getRua());
             preparedStatement.setString(2, entidade.getNumero());
@@ -42,11 +42,18 @@ public class EnderecoDAO extends ConexaoDB{
             preparedStatement.setString(6, entidade.getCidade());
             preparedStatement.setInt(7, entidade.getLaboratorio_id());
             preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()){
+                entidade.setId(resultSet.getInt(1));
+            }
+            preparedStatement.getConnection().close();
+            return entidade;
         } catch (SQLException e) {
             printSQLException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
 
     public Endereco select(int id) {

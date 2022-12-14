@@ -34,16 +34,23 @@ public class PacienteDAO extends ConexaoDB{
         return count;
     }
 
-    public void insert(Paciente entidade) {
+    public Paciente insert(Paciente entidade) {
         try (PreparedStatement preparedStatement = prepararSQL(INSERT_PACIENTE_SQL)) {
             preparedStatement.setString(1, entidade.getNome());
             preparedStatement.setTimestamp(2, new Timestamp(entidade.getDt_nascimento().getTime()));
             preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()){
+                entidade.setId(resultSet.getInt(1));
+            }
+            preparedStatement.getConnection().close();
+            return entidade;
         } catch (SQLException e) {
             printSQLException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
 
     public Paciente select(int id) {

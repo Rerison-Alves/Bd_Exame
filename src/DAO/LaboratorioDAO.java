@@ -39,7 +39,12 @@ public class LaboratorioDAO extends ConexaoDB{
             preparedStatement.setString(3, entidade.getCNPJ());
             preparedStatement.setString(4, entidade.getCRBM());
             preparedStatement.setString(5, entidade.getNome_fantasia());
-            entidade.setId(preparedStatement.executeUpdate());
+            preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()){
+                entidade.setId(resultSet.getInt(1));
+            }
+            preparedStatement.getConnection().close();
             return entidade;
         } catch (SQLException e) {
             printSQLException(e);

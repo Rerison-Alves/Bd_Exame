@@ -32,15 +32,22 @@ public class UnidadeMedidaDAO extends ConexaoDB{
         return count;
     }
 
-    public void insert(UnidadeMedida entidade) {
+    public UnidadeMedida insert(UnidadeMedida entidade) {
         try (PreparedStatement preparedStatement = prepararSQL(INSERT_UNIDADE_MEDIDA_SQL)) {
             preparedStatement.setString(1, entidade.getDescricao());
             preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()){
+                entidade.setId(resultSet.getInt(1));
+            }
+            preparedStatement.getConnection().close();
+            return entidade;
         } catch (SQLException e) {
             printSQLException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
 
     public UnidadeMedida select(int id) {

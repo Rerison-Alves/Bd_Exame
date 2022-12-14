@@ -33,7 +33,7 @@ public class SolicitacaoExameDAO extends ConexaoDB{
         return count;
     }
 
-    public void insert(SolicitacaoExame entidade) {
+    public SolicitacaoExame insert(SolicitacaoExame entidade) {
         try (PreparedStatement preparedStatement = prepararSQL(INSERT_SOLICITACAO_EXAME_SQL)) {
             preparedStatement.setString(1, entidade.getNm_prescrito());
             preparedStatement.setTimestamp(2, new Timestamp(entidade.getDt_solicitacao().getTime()));
@@ -41,11 +41,18 @@ public class SolicitacaoExameDAO extends ConexaoDB{
             preparedStatement.setInt(4, entidade.getHabilitacao_exame_id());
             preparedStatement.setInt(5, entidade.getExame_id());
             preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()){
+                entidade.setId(resultSet.getInt(1));
+            }
+            preparedStatement.getConnection().close();
+            return entidade;
         } catch (SQLException e) {
             printSQLException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
 
     public SolicitacaoExame select(int id) {

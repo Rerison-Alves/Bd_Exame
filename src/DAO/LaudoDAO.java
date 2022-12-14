@@ -30,18 +30,25 @@ public class LaudoDAO extends ConexaoDB{
         return count;
     }
 
-    public void insert(Laudo entidade) {
+    public Laudo insert(Laudo entidade) {
         try (PreparedStatement preparedStatement = prepararSQL(INSERT_LAUDO_SQL)) {
             preparedStatement.setString(1, entidade.getAssinatura_digital());
             preparedStatement.setTimestamp(2, new Timestamp(entidade.getDt_resultado().getTime()));
             preparedStatement.setString(3, entidade.getCodigo());
             preparedStatement.setInt(4, entidade.getSolicitacao_exame_id());
             preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()){
+                entidade.setId(resultSet.getInt(1));
+            }
+            preparedStatement.getConnection().close();
+            return entidade;
         } catch (SQLException e) {
             printSQLException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
 
     public Laudo select(int id) {

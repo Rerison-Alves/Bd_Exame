@@ -34,18 +34,25 @@ public class ConsultaMedicaDAO extends ConexaoDB{
         return count;
     }
 
-    public void insert(ConsultaMedica entidade) {
+    public ConsultaMedica insert(ConsultaMedica entidade) {
         try (PreparedStatement preparedStatement = prepararSQL(INSERT_CONSULTA_MEDICA_SQL)) {
             preparedStatement.setTimestamp(1, new Timestamp(entidade.getDt_consulta().getTime()));
             preparedStatement.setInt(2, entidade.getMedico_id());
             preparedStatement.setInt(3, entidade.getPaciente_id());
             preparedStatement.setString(4, entidade.getNm_atendimento());
             preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()){
+                entidade.setId(resultSet.getInt(1));
+            }
+            preparedStatement.getConnection().close();
+            return entidade;
         } catch (SQLException e) {
             printSQLException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
 
     public ConsultaMedica select(int id) {

@@ -32,16 +32,23 @@ public class MaterialExameDAO extends ConexaoDB{
         return count;
     }
 
-    public void insert(MaterialExame entidade) {
+    public MaterialExame insert(MaterialExame entidade) {
         try (PreparedStatement preparedStatement = prepararSQL(INSERT_MATERIAL_EXAME_SQL)) {
             preparedStatement.setString(1, entidade.getMaterial());
             preparedStatement.setString(2, entidade.getObservacao());
             preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()){
+                entidade.setId(resultSet.getInt(1));
+            }
+            preparedStatement.getConnection().close();
+            return entidade;
         } catch (SQLException e) {
             printSQLException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
 
     public MaterialExame select(int id) {

@@ -32,18 +32,25 @@ public class HabilitacaoExameDAO extends ConexaoDB{
         return count;
     }
 
-    public void insert(HabilitacaoExame entidade) {
+    public HabilitacaoExame insert(HabilitacaoExame entidade) {
         try (PreparedStatement preparedStatement = prepararSQL(INSERT_HABILITACAO_EXAME_SQL)) {
             preparedStatement.setString(1, entidade.getObservacao());
             preparedStatement.setDouble(2, entidade.getCusto());
             preparedStatement.setInt(3, entidade.getLaboratorio_id());
             preparedStatement.setInt(4, entidade.getTipo_exame_id());
             preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()){
+                entidade.setId(resultSet.getInt(1));
+            }
+            preparedStatement.getConnection().close();
+            return entidade;
         } catch (SQLException e) {
             printSQLException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
 
     public HabilitacaoExame select(int id) {

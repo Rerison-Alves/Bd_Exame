@@ -33,16 +33,23 @@ public class ComposicaoExameDAO extends ConexaoDB{
         return count;
     }
 
-    public void insert(ComposicaoExame entidade) {
+    public ComposicaoExame insert(ComposicaoExame entidade) {
         try (PreparedStatement preparedStatement = prepararSQL(INSERT_COMPOSICAO_EXAME_SQL)) {
             preparedStatement.setString(1, entidade.getDescricao());
             preparedStatement.setInt(2, entidade.getUnidade_medida_id());
             preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()){
+                entidade.setId(resultSet.getInt(1));
+            }
+            preparedStatement.getConnection().close();
+            return entidade;
         } catch (SQLException e) {
             printSQLException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
 
     public ComposicaoExame select(int id) {

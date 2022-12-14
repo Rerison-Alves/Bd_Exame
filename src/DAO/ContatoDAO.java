@@ -32,16 +32,23 @@ public class ContatoDAO extends ConexaoDB{
         return count;
     }
 
-    public void insert(Contato entidade) {
+    public Contato insert(Contato entidade) {
         try (PreparedStatement preparedStatement = prepararSQL(INSERT_CONTATO_SQL)) {
             preparedStatement.setString(1, entidade.getTelefone());
             preparedStatement.setInt(2, entidade.getLaboratorio_id());
             preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()){
+                entidade.setId(resultSet.getInt(1));
+            }
+            preparedStatement.getConnection().close();
+            return entidade;
         } catch (SQLException e) {
             printSQLException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
 
     public Contato select(int id) {

@@ -36,7 +36,12 @@ public class EspecialidadeDAO extends ConexaoDB{
         try (PreparedStatement preparedStatement = prepararSQL(INSERT_ESPECIALIDADE_SQL)) {
             preparedStatement.setString(1, entidade.getDescricao());
             preparedStatement.setString(2, entidade.getObservacao());
-            entidade.setId(preparedStatement.executeUpdate());
+            preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()){
+                entidade.setId(resultSet.getInt(1));
+            }
+            preparedStatement.getConnection().close();
             return entidade;
         } catch (SQLException e) {
             printSQLException(e);
