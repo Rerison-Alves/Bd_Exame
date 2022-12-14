@@ -13,7 +13,11 @@ public class ResetarBanco {
         String[] tabelas = {"resultado_exame", "laudo", "composicao", "valor_referencia_composicao_exame", "composicao_exame", "unidade_medida", "solicitacao_exame", "exame", "material_exame", "habilitacao_exame", "tipo_exame", "consulta_medica", "responsavel_tecnico_has_laboratorio", "medico_has_especialidade", "especialidade", "medico", "paciente", "responsavel_tecnico", "sigla_formacao", "endereco", "contato", "laboratorio"};
         for (String tabela : tabelas) {
             String delete = "DELETE FROM " + tabela + ";";
-            String resetseq = "ALTER SEQUENCE " + tabela + "_id_seq RESTART;";
+            String resetseq = "";
+            if (!(tabela.equals("medico_has_especialidade") || tabela.equals("responsavel_tecnico_has_laboratorio")) ){
+                resetseq = "ALTER SEQUENCE " + tabela + "_id_seq RESTART;";
+            }
+
             try (PreparedStatement statement = prepararSQL(delete)) {
                 statement.executeUpdate();
                 statement.getConnection().close();

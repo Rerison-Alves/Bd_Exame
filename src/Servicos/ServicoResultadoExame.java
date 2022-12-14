@@ -6,30 +6,27 @@ import model.ResultadoExame;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ServicoResultadoExame extends ResultadoExameDAO {
+public class ServicoResultadoExame {
 
-    @Override
+    ResultadoExameDAO resultadoExameDAO = new ResultadoExameDAO();
+
     public void insert(ResultadoExame entidade) {
-        super.insert(entidade);
+        resultadoExameDAO.insert(entidade);
     }
 
-    @Override
     public ResultadoExame select(int id) {
-        return super.select(id);
+        return resultadoExameDAO.select(id);
     }
 
-    @Override
     public List<ResultadoExame> selectAll() {
-        return super.selectAll();
+        return resultadoExameDAO.selectAll();
     }
 
-    @Override
     public boolean delete(int id) throws SQLException {
-        return super.delete(id);
+        return resultadoExameDAO.delete(id);
     }
 
-    @Override
     public boolean update(ResultadoExame entidade) throws SQLException {
-        return super.update(entidade);
+        return resultadoExameDAO.update(entidade);
     }
 }

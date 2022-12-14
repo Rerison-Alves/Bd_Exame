@@ -6,30 +6,27 @@ import model.ConsultaMedica;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ServicoConsultaMedica extends ConsultaMedicaDAO {
+public class ServicoConsultaMedica {
 
-    @Override
+    ConsultaMedicaDAO consultaMedicaDAO = new ConsultaMedicaDAO();
+
     public void insert(ConsultaMedica entidade) {
-        super.insert(entidade);
+        consultaMedicaDAO.insert(entidade);
     }
 
-    @Override
     public ConsultaMedica select(int id) {
-        return super.select(id);
+        return consultaMedicaDAO.select(id);
     }
 
-    @Override
     public List<ConsultaMedica> selectAll() {
-        return super.selectAll();
+        return consultaMedicaDAO.selectAll();
     }
 
-    @Override
     public boolean delete(int id) throws SQLException {
-        return super.delete(id);
+        return consultaMedicaDAO.delete(id);
     }
 
-    @Override
     public boolean update(ConsultaMedica entidade) throws SQLException {
-        return super.update(entidade);
+        return consultaMedicaDAO.update(entidade);
     }
 }

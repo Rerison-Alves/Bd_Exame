@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class ResponsavelTecnico extends GenericModel{
     public ResponsavelTecnico(Integer id, String nome, String conselho, String formacao, Integer sigla_formacao_id) {
         super(id);
@@ -13,6 +15,8 @@ public class ResponsavelTecnico extends GenericModel{
     private String conselho;
     private String formacao;
     private Integer sigla_formacao_id;
+
+    private List<Laboratorio> laboratorios;
 
     public String getNome() {
         return nome;
@@ -44,6 +48,14 @@ public class ResponsavelTecnico extends GenericModel{
 
     public void setSigla_formacao_id(Integer sigla_formacao_id) {
         this.sigla_formacao_id = sigla_formacao_id;
+    }
+
+    public List<Laboratorio> getLaboratorios() {
+        return laboratorios;
+    }
+
+    public void setLaboratorios(List<Laboratorio> laboratorios) {
+        this.laboratorios = laboratorios;
     }
 
     @Override

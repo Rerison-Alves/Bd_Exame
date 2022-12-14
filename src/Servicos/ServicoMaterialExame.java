@@ -6,30 +6,27 @@ import model.MaterialExame;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ServicoMaterialExame extends MaterialExameDAO {
+public class ServicoMaterialExame {
 
-    @Override
+    MaterialExameDAO materialExameDAO = new MaterialExameDAO();
+
     public void insert(MaterialExame entidade) {
-        super.insert(entidade);
+        materialExameDAO.insert(entidade);
     }
 
-    @Override
     public MaterialExame select(int id) {
-        return super.select(id);
+        return materialExameDAO.select(id);
     }
 
-    @Override
     public List<MaterialExame> selectAll() {
-        return super.selectAll();
+        return materialExameDAO.selectAll();
     }
 
-    @Override
     public boolean delete(int id) throws SQLException {
-        return super.delete(id);
+        return materialExameDAO.delete(id);
     }
 
-    @Override
     public boolean update(MaterialExame entidade) throws SQLException {
-        return super.update(entidade);
+        return materialExameDAO.update(entidade);
     }
 }

@@ -12,7 +12,7 @@ public class ServicoMedico {
 
     private MedicoDAO medicoDAO = new MedicoDAO();
 
-    private MedicoHasEspecialidadeDAO medicoHasEspecialidadeDAO = new ServicoMedicoHasEspecialidade();
+    private MedicoHasEspecialidadeDAO medicoHasEspecialidadeDAO = new MedicoHasEspecialidadeDAO();
 
     private ServicoEspecialidade servicoEspecialidade = new ServicoEspecialidade();
 
@@ -42,7 +42,7 @@ public class ServicoMedico {
     }
 
     public Medico salvar(Medico entidade) {
-        Medico medicoNovo = medicoDAO.insert(entidade);
+        Medico medicoNovo = insert(entidade);
         medicoNovo.setEspecialidades(entidade.getEspecialidades());
         salvarEspecialidades(entidade, medicoNovo);
         return medicoNovo;

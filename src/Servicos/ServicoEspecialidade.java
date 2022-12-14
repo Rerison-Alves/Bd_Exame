@@ -6,30 +6,27 @@ import model.Especialidade;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ServicoEspecialidade extends EspecialidadeDAO {
+public class ServicoEspecialidade {
 
-    @Override
-    public void insert(Especialidade entidade) {
-        super.insert(entidade);
+    EspecialidadeDAO especialidadeDAO = new EspecialidadeDAO();
+
+    public Especialidade insert(Especialidade entidade) {
+       return especialidadeDAO.insert(entidade);
     }
 
-    @Override
     public Especialidade select(int id) {
-        return super.select(id);
+        return especialidadeDAO.select(id);
     }
 
-    @Override
     public List<Especialidade> selectAll() {
-        return super.selectAll();
+        return especialidadeDAO.selectAll();
     }
 
-    @Override
     public boolean delete(int id) throws SQLException {
-        return super.delete(id);
+        return especialidadeDAO.delete(id);
     }
 
-    @Override
     public boolean update(Especialidade entidade) throws SQLException {
-        return super.update(entidade);
+        return especialidadeDAO.update(entidade);
     }
 }

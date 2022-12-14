@@ -6,13 +6,37 @@
   <component name="ChangeListManager">
     <list default="true" id="7cc046ab-9ffc-47ef-8907-1fb60326da91" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/ConexaoDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/ConexaoDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/MedicoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/MedicoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAO/EspecialidadeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/EspecialidadeDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAO/LaboratorioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/LaboratorioDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DAO/MedicoHasEspecialidadeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/MedicoHasEspecialidadeDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAO/ResponsavelTecnicoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/ResponsavelTecnicoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAO/ResponsavelTecnicoHasLaboratorioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/ResponsavelTecnicoHasLaboratorioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servicos/ServicoComposicao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servicos/ServicoComposicao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servicos/ServicoComposicaoExame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servicos/ServicoComposicaoExame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servicos/ServicoConsultaMedica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servicos/ServicoConsultaMedica.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servicos/ServicoContato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servicos/ServicoContato.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servicos/ServicoEndereco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servicos/ServicoEndereco.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servicos/ServicoEspecialidade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servicos/ServicoEspecialidade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servicos/ServicoExame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servicos/ServicoExame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servicos/ServicoHabilitacaoExame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servicos/ServicoHabilitacaoExame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servicos/ServicoLaboratorio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servicos/ServicoLaboratorio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servicos/ServicoLaudo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servicos/ServicoLaudo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servicos/ServicoMaterialExame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servicos/ServicoMaterialExame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Servicos/ServicoMedico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servicos/ServicoMedico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servicos/ServicoMedicoHasEspecialidade.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servicos/ServicoPaciente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servicos/ServicoPaciente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servicos/ServicoResponsavelTecnico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servicos/ServicoResponsavelTecnico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servicos/ServicoResponsavelTecnicoHasLaboratorio.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servicos/ServicoResultadoExame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servicos/ServicoResultadoExame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servicos/ServicoSiglaFormacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servicos/ServicoSiglaFormacao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servicos/ServicoSolicitacaoExame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servicos/ServicoSolicitacaoExame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servicos/ServicoTipoExame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servicos/ServicoTipoExame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servicos/ServicoUnidadeMedida.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servicos/ServicoUnidadeMedida.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Servicos/ServicoValorReferenciaComposicaoExame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Servicos/ServicoValorReferenciaComposicaoExame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Teste/ResetarBanco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Teste/ResetarBanco.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Teste/Teste.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Teste/Teste.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Medico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Medico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/MedicoHasEspecialidade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/MedicoHasEspecialidade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/ResponsavelTecnico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ResponsavelTecnico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/ResponsavelTecnicoHasLaboratorio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ResponsavelTecnicoHasLaboratorio.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,11 +53,11 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -51,19 +75,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/reris/IdeaProjects/Bd_Exame/postgresql-42.4.0.jar&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "last_opened_file_path": "C:/Users/reris/IdeaProjects/Bd_Exame/postgresql-42.4.0.jar",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "advanced.settings"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

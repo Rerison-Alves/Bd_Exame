@@ -6,30 +6,27 @@ import model.ValorReferenciaComposicaoExame;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ServicoValorReferenciaComposicaoExame extends ValorReferenciaComposicaoExameDAO {
+public class ServicoValorReferenciaComposicaoExame {
 
-    @Override
+    ValorReferenciaComposicaoExameDAO valorReferenciaComposicaoExameDAO = new ValorReferenciaComposicaoExameDAO();
+
     public void insert(ValorReferenciaComposicaoExame entidade) {
-        super.insert(entidade);
+        valorReferenciaComposicaoExameDAO.insert(entidade);
     }
 
-    @Override
     public ValorReferenciaComposicaoExame select(int id) {
-        return super.select(id);
+        return valorReferenciaComposicaoExameDAO.select(id);
     }
 
-    @Override
     public List<ValorReferenciaComposicaoExame> selectAll() {
-        return super.selectAll();
+        return valorReferenciaComposicaoExameDAO.selectAll();
     }
 
-    @Override
     public boolean delete(int id) throws SQLException {
-        return super.delete(id);
+        return valorReferenciaComposicaoExameDAO.delete(id);
     }
 
-    @Override
     public boolean update(ValorReferenciaComposicaoExame entidade) throws SQLException {
-        return super.update(entidade);
+        return valorReferenciaComposicaoExameDAO.update(entidade);
     }
 }

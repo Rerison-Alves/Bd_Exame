@@ -6,30 +6,30 @@ import model.Composicao;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ServicoComposicao extends ComposicaoDAO {
+public class ServicoComposicao {
 
-    @Override
+    ComposicaoDAO composicaoDAO = new ComposicaoDAO();
+
     public void insert(Composicao entidade) {
-        super.insert(entidade);
+        composicaoDAO.insert(entidade);
     }
 
-    @Override
+
     public Composicao select(int id) {
-        return super.select(id);
+        return composicaoDAO.select(id);
     }
 
-    @Override
+
     public List<Composicao> selectAll() {
-        return super.selectAll();
+        return composicaoDAO.selectAll();
     }
 
-    @Override
+
     public boolean delete(int id) throws SQLException {
-        return super.delete(id);
+        return composicaoDAO.delete(id);
     }
 
-    @Override
     public boolean update(Composicao entidade) throws SQLException {
-        return super.update(entidade);
+        return composicaoDAO.update(entidade);
     }
 }

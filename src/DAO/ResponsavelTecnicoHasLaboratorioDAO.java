@@ -12,8 +12,7 @@ public class ResponsavelTecnicoHasLaboratorioDAO extends ConexaoDB{
     private static final String INSERT_RESPONSAVEL_TECNICO_HAS_LABORATORIO_SQL = "INSERT INTO responsavel_tecnico_has_laboratorio (responsavel_tecnico_id,laboratorio_id) VALUES (?,?);";
     private static final String SELECT_RESPONSAVEL_TECNICO_HAS_LABORATORIO_BY_ID = "SELECT id, * FROM responsavel_tecnico_has_laboratorio WHERE id = ?";
     private static final String SELECT_ALL_RESPONSAVEL_TECNICO_HAS_LABORATORIO = "SELECT * FROM responsavel_tecnico_has_laboratorio;";
-    private static final String DELETE_RESPONSAVEL_TECNICO_HAS_LABORATORIO_SQL = "DELETE FROM responsavel_tecnico_has_laboratorio WHERE id = ?;";
-    private static final String UPDATE_RESPONSAVEL_TECNICO_HAS_LABORATORIO_SQL = "UPDATE responsavel_tecnico_has_laboratorio SET responsavel_tecnico_id = ?,laboratorio_id = ? WHERE id = ?;";
+    private static final String DELETE_RESPONSAVEL_TECNICO_HAS_LABORATORIO_FROM_RESPONSAVEL_TECNICO_SQL = "DELETE FROM responsavel_tecnico_has_laboratorio WHERE responsavel_tecnico_id = ?;";
     private static final String TOTAL = "SELECT count(1) FROM responsavel_tecnico_has_laboratorio;";
 
     public Integer count() {
@@ -53,7 +52,7 @@ public class ResponsavelTecnicoHasLaboratorioDAO extends ConexaoDB{
             while (rs.next()) {
                 Integer responsavel_tecnico_id = rs.getInt("responsavel_tecnico_id");
                 Integer laboratorio_id = rs.getInt("laboratorio_id");
-                entidade = new ResponsavelTecnicoHasLaboratorio(id,responsavel_tecnico_id,laboratorio_id);
+                entidade = new ResponsavelTecnicoHasLaboratorio(responsavel_tecnico_id,laboratorio_id);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -72,7 +71,7 @@ public class ResponsavelTecnicoHasLaboratorioDAO extends ConexaoDB{
                 int id = rs.getInt("id");
                 Integer responsavel_tecnico_id = rs.getInt("responsavel_tecnico_id");
                 Integer laboratorio_id = rs.getInt("laboratorio_id");
-                entidades.add(new ResponsavelTecnicoHasLaboratorio(id,responsavel_tecnico_id,laboratorio_id));
+                entidades.add(new ResponsavelTecnicoHasLaboratorio(responsavel_tecnico_id,laboratorio_id));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -82,8 +81,8 @@ public class ResponsavelTecnicoHasLaboratorioDAO extends ConexaoDB{
         return entidades;
     }
 
-    public boolean delete(int id) throws SQLException {
-        try (PreparedStatement statement = prepararSQL(DELETE_RESPONSAVEL_TECNICO_HAS_LABORATORIO_SQL)) {
+    public boolean deleteFromResponsavelTecnico(int id) throws SQLException {
+        try (PreparedStatement statement = prepararSQL(DELETE_RESPONSAVEL_TECNICO_HAS_LABORATORIO_FROM_RESPONSAVEL_TECNICO_SQL)) {
             statement.setInt(1, id);
             return statement.executeUpdate() > 0;
         } catch (ClassNotFoundException e) {
@@ -91,15 +90,4 @@ public class ResponsavelTecnicoHasLaboratorioDAO extends ConexaoDB{
         }
     }
 
-    public boolean update(ResponsavelTecnicoHasLaboratorio entidade) throws SQLException {
-        try (PreparedStatement statement = prepararSQL(UPDATE_RESPONSAVEL_TECNICO_HAS_LABORATORIO_SQL)) {
-            statement.setInt(1, entidade.getResponsavel_tecnico_id());
-            statement.setInt(2, entidade.getLaboratorio_id());
-            statement.setInt(3, entidade.getId());
-
-            return statement.executeUpdate() > 0;
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }

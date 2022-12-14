@@ -6,30 +6,27 @@ import model.SiglaFormacao;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ServicoSiglaFormacao extends SiglaFormacaoDAO {
+public class ServicoSiglaFormacao {
 
-    @Override
+    SiglaFormacaoDAO siglaFormacaoDAO = new SiglaFormacaoDAO();
+
     public void insert(SiglaFormacao entidade) {
-        super.insert(entidade);
+        siglaFormacaoDAO.insert(entidade);
     }
 
-    @Override
     public SiglaFormacao select(int id) {
-        return super.select(id);
+        return siglaFormacaoDAO.select(id);
     }
 
-    @Override
     public List<SiglaFormacao> selectAll() {
-        return super.selectAll();
+        return siglaFormacaoDAO.selectAll();
     }
 
-    @Override
     public boolean delete(int id) throws SQLException {
-        return super.delete(id);
+        return siglaFormacaoDAO.delete(id);
     }
 
-    @Override
     public boolean update(SiglaFormacao entidade) throws SQLException {
-        return super.update(entidade);
+        return siglaFormacaoDAO.update(entidade);
     }
 }

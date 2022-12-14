@@ -32,16 +32,18 @@ public class EspecialidadeDAO extends ConexaoDB{
         return count;
     }
 
-    public void insert(Especialidade entidade) {
+    public Especialidade insert(Especialidade entidade) {
         try (PreparedStatement preparedStatement = prepararSQL(INSERT_ESPECIALIDADE_SQL)) {
             preparedStatement.setString(1, entidade.getDescricao());
             preparedStatement.setString(2, entidade.getObservacao());
-            preparedStatement.executeUpdate();
+            entidade.setId(preparedStatement.executeUpdate());
+            return entidade;
         } catch (SQLException e) {
             printSQLException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
 
     public Especialidade select(int id) {

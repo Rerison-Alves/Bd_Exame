@@ -6,30 +6,27 @@ import model.Laudo;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ServicoLaudo extends LaudoDAO {
+public class ServicoLaudo {
 
-    @Override
+    LaudoDAO laudoDAO = new LaudoDAO();
+
     public void insert(Laudo entidade) {
-        super.insert(entidade);
+        laudoDAO.insert(entidade);
     }
 
-    @Override
     public Laudo select(int id) {
-        return super.select(id);
+        return laudoDAO.select(id);
     }
 
-    @Override
     public List<Laudo> selectAll() {
-        return super.selectAll();
+        return laudoDAO.selectAll();
     }
 
-    @Override
     public boolean delete(int id) throws SQLException {
-        return super.delete(id);
+        return laudoDAO.delete(id);
     }
 
-    @Override
     public boolean update(Laudo entidade) throws SQLException {
-        return super.update(entidade);
+        return laudoDAO.update(entidade);
     }
 }

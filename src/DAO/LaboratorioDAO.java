@@ -32,19 +32,21 @@ public class LaboratorioDAO extends ConexaoDB{
         return count;
     }
 
-    public void insert(Laboratorio entidade) {
+    public Laboratorio insert(Laboratorio entidade) {
         try (PreparedStatement preparedStatement = prepararSQL(INSERT_LABORATORIO_SQL)) {
             preparedStatement.setString(1, entidade.getDescricao());
             preparedStatement.setString(2, entidade.getCNES());
             preparedStatement.setString(3, entidade.getCNPJ());
             preparedStatement.setString(4, entidade.getCRBM());
             preparedStatement.setString(5, entidade.getNome_fantasia());
-            preparedStatement.executeUpdate();
+            entidade.setId(preparedStatement.executeUpdate());
+            return entidade;
         } catch (SQLException e) {
             printSQLException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
 
     public Laboratorio select(int id) {

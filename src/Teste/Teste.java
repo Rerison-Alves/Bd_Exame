@@ -12,20 +12,24 @@ import java.util.List;
 public class Teste {
     public static void main(String[] args) {
         //Teste de inserts
-        Laboratorio laboratorio = new Laboratorio(null, "laboratorio", "123456789", "123456789", "123456789", "Ana Lima");
-        new ServicoLaboratorio().insert(laboratorio);
+        SiglaFormacao siglaFormacao = new SiglaFormacao(null, "Dr(a)");
+        new ServicoSiglaFormacao().insert(siglaFormacao);
+
+        Laboratorio laboratorio1 = new Laboratorio(null, "laboratorio1", "123456789", "123456789", "123456789", "Ana Lima");
+
+        Laboratorio laboratorio2 = new Laboratorio(null, "laboratorio2", "123456789", "123456789", "123456789", "Ana Lima");
+
+        ServicoLaboratorio servicoLaboratorio = new ServicoLaboratorio();
+
+        ResponsavelTecnico responsavelTecnico = new ResponsavelTecnico(null, "Maria do Socorro", "CME", "Pediatra", 1);
+        responsavelTecnico.setLaboratorios(List.of(servicoLaboratorio.insert(laboratorio1), servicoLaboratorio.insert(laboratorio2)));
+        new ServicoResponsavelTecnico().salvar(responsavelTecnico);
 
         Contato contato = new Contato(null, "988380012", 1);
         new ServicoContato().insert(contato);
 
         Endereco endereco = new Endereco(null, "Paulo Afonso", "41", "Baixos", "Jereissati II", "61920690", "Maracanaú", 1);
         new ServicoEndereco().insert(endereco);
-
-        SiglaFormacao siglaFormacao = new SiglaFormacao(null, "Dr(a)");
-        new ServicoSiglaFormacao().insert(siglaFormacao);
-
-        ResponsavelTecnico responsavelTecnico = new ResponsavelTecnico(null, "Maria do Socorro", "CME", "Pediatra", 1);
-        new ServicoResponsavelTecnico().insert(responsavelTecnico);
 
         Paciente paciente = null;
         try {
@@ -36,17 +40,14 @@ public class Teste {
         new ServicoPaciente().insert(paciente);
 
         Especialidade especialidade = new Especialidade(null, "Infectologia", "Doutor");
-        new ServicoEspecialidade().insert(especialidade);
 
         Especialidade especialidade2 = new Especialidade(null, "Pediatria", "Doutor");
-        new ServicoEspecialidade().insert(especialidade);
+
+        ServicoEspecialidade servicoEspecialidade = new ServicoEspecialidade();
 
         Medico medico = new Medico(null, "123456789", "Alexandre de Morais");
-        medico.setEspecialidades(List.of(especialidade, especialidade2));
+        medico.setEspecialidades(List.of(servicoEspecialidade.insert(especialidade), servicoEspecialidade.insert(especialidade2)));
         new ServicoMedico().salvar(medico);
-
-        ResponsavelTecnicoHasLaboratorio responsavelTecnicoHasLaboratorio = new ResponsavelTecnicoHasLaboratorio(null, 1, 1);
-        new ServicoResponsavelTecnicoHasLaboratorio().insert(responsavelTecnicoHasLaboratorio);
 
         ConsultaMedica consultaMedica = new ConsultaMedica(null, new Date(), 1, 1, "5056");
         new ServicoConsultaMedica().insert(consultaMedica);
@@ -101,10 +102,6 @@ public class Teste {
         toStrings.add(new ServicoMedico().select(1).toString());
 
         toStrings.add(new ServicoEspecialidade().select(1).toString());
-
-        toStrings.add(new ServicoMedicoHasEspecialidade().select(1).toString());
-
-        toStrings.add(new ServicoResponsavelTecnicoHasLaboratorio().select(1).toString());
 
         toStrings.add(new ServicoConsultaMedica().select(1).toString());
 

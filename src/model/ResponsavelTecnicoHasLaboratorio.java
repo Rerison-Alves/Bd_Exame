@@ -1,8 +1,7 @@
 package model;
 
-public class ResponsavelTecnicoHasLaboratorio extends GenericModel{
-    public ResponsavelTecnicoHasLaboratorio(Integer id, Integer responsavel_tecnico_id, Integer laboratorio_id) {
-        super(id);
+public class ResponsavelTecnicoHasLaboratorio{
+    public ResponsavelTecnicoHasLaboratorio(Integer responsavel_tecnico_id, Integer laboratorio_id) {
         this.responsavel_tecnico_id = responsavel_tecnico_id;
         this.laboratorio_id = laboratorio_id;
     }
@@ -31,6 +30,6 @@ public class ResponsavelTecnicoHasLaboratorio extends GenericModel{
         return "Responsavel_tecnico_has_laboratorio{" +
                 "responsavel_tecnico_id=" + responsavel_tecnico_id +
                 ", laboratorio_id=" + laboratorio_id +
-                "} " + super.toString();
+                "} ";
     }
 }

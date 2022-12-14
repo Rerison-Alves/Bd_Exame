@@ -6,30 +6,27 @@ import model.Laboratorio;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ServicoLaboratorio extends LaboratorioDAO {
+public class ServicoLaboratorio {
 
-    @Override
-    public void insert(Laboratorio entidade) {
-        super.insert(entidade);
+    LaboratorioDAO laboratorioDAO = new LaboratorioDAO();
+
+    public Laboratorio insert(Laboratorio entidade) {
+        return laboratorioDAO.insert(entidade);
     }
 
-    @Override
     public Laboratorio select(int id) {
-        return super.select(id);
+        return laboratorioDAO.select(id);
     }
 
-    @Override
     public List<Laboratorio> selectAll() {
-        return super.selectAll();
+        return laboratorioDAO.selectAll();
     }
 
-    @Override
     public boolean delete(int id) throws SQLException {
-        return super.delete(id);
+        return laboratorioDAO.delete(id);
     }
 
-    @Override
     public boolean update(Laboratorio entidade) throws SQLException {
-        return super.update(entidade);
+        return laboratorioDAO.update(entidade);
     }
 }

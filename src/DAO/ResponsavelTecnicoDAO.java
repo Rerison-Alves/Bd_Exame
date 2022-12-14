@@ -32,18 +32,21 @@ public class ResponsavelTecnicoDAO extends ConexaoDB{
         return count;
     }
 
-    public void insert(ResponsavelTecnico entidade) {
+    public ResponsavelTecnico insert(ResponsavelTecnico entidade) {
         try (PreparedStatement preparedStatement = prepararSQL(INSERT_RESPONSAVEL_TECNICO_SQL)) {
             preparedStatement.setString(1, entidade.getNome());
             preparedStatement.setString(2, entidade.getConselho());
             preparedStatement.setString(3, entidade.getFormacao());
             preparedStatement.setInt(4, entidade.getSigla_formacao_id());
-            preparedStatement.executeUpdate();
+            entidade.setId(preparedStatement.executeUpdate());
+            preparedStatement.getConnection().close();
+            return entidade;
         } catch (SQLException e) {
             printSQLException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
 
     public ResponsavelTecnico select(int id) {
